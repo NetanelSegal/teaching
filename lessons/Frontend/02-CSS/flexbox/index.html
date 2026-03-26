@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="he">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>שיעור: Flexbox</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <h1>שיעור פלקסבוקס (Flexbox)</h1>
+
+    <!-- חלק 1: מה זה Flexbox? -->
+    <h2>1. הגדרת הקונטיינר (display: flex)</h2>
+    <p>פלקסבוקס מאפשר לנו לסדר אלמנטים בתוך "קונטיינר" בצורה גמישה.</p>
+
+    <!-- חלק 2: שליטה בכיוון (flex-direction) -->
+    <h2>2. שליטה בכיוון (flex-direction)</h2>
+    <button onclick="changeFlexDirection('row')">שורה (row)</button>
+    <button onclick="changeFlexDirection('row-reverse')">שורה הפוכה (row-reverse)</button>
+    <button onclick="changeFlexDirection('column')">עמודה (column)</button>
+    <button onclick="changeFlexDirection('column-reverse')">עמודה הפוכה (column-reverse)</button>
+
+    <!-- חלק 3: יישור אופקי (justify-content) -->
+    <h2>3. יישור אופקי (justify-content)</h2>
+    <button onclick="changeJustifyContent('flex-start')">flex-start</button>
+    <button onclick="changeJustifyContent('center')">center</button>
+    <button onclick="changeJustifyContent('flex-end')">flex-end</button>
+    <button onclick="changeJustifyContent('space-between')">space-between</button>
+    <button onclick="changeJustifyContent('space-around')">space-around</button>
+    <button onclick="changeJustifyContent('space-evenly')">space-evenly</button>
+
+    <!-- חלק 4: יישור אנכי (align-items) -->
+    <h2>4. יישור אנכי (align-items)</h2>
+    <button onclick="changeAlignItems('stretch')">stretch (ברירת מחדל)</button>
+    <button onclick="changeAlignItems('center')">center</button>
+    <button onclick="changeAlignItems('flex-start')">flex-start</button>
+    <button onclick="changeAlignItems('flex-end')">flex-end</button>
+
+    <div class="container-controls">
+        <h3>הדגמה:</h3>
+        <div id="flex-container" class="flex-container">
+            <div class="item item-1">1</div>
+            <div class="item item-2">2</div>
+            <div class="item item-3">3</div>
+            <div class="item item-4">4</div>
+        </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="he">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>שיעור: CSS Position</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <h1>שיעור מיקום (CSS Position)</h1>
+
+    <!-- חלק 1: מה זה Position? -->
+    <h2>1. סוגי מיקום (Position Types)</h2>
+    <p>תכונת ה-position קובעת איך אלמנט ימוקם בדף.</p>
+    
+    <div class="controls">
+      <button onclick="changePosition('static')">סטטי (static) - ברירת מחדל</button>
+      <button onclick="changePosition('relative')">יחסי (relative)</button>
+      <button onclick="changePosition('absolute')">מוחלט (absolute)</button>
+      <button onclick="changePosition('fixed')">קבוע (fixed)</button>
+      <button onclick="changePosition('sticky')">דביק (sticky)</button>
+    </div>
+
+    <!-- חלק 2: הדגמה -->
+    <h2>2. הדגמה חיה</h2>
+    <p>שימו לב איך הריבוע הכחול משנה את התנהגותו:</p>
+
+    <div class="parent-container">
+        <div class="box box-1">ריבוע 1 (סטטי)</div>
+        <div id="target-box" class="box box-target">אני הריבוע שמשתנה!</div>
+        <div class="box box-2">ריבוע 2 (סטטי)</div>
+        
+        <div class="spacer">
+            <p>גלילה למטה כדי לבדוק sticky ו-fixed...</p>
+            <div style="height: 1000px; border-left: 2px solid #ccc; padding: 20px;">
+                כאן יש הרבה תוכן כדי שנוכל לגלול.
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

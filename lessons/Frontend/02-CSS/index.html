@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="he">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>מרכז שיעורי CSS</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        direction: rtl;
+        padding: 40px;
+        background-color: #ecf0f1;
+        text-align: center;
+      }
+      h1 { color: #2c3e50; margin-bottom: 30px; }
+      .section-title { margin-top: 50px; color: #7f8c8d; border-bottom: 2px solid #bdc3c7; display: inline-block; padding: 0 20px 5px; }
+      .lesson-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        max-width: 1000px;
+        margin: 20px auto;
+      }
+      .lesson-card {
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        text-decoration: none;
+        color: #333;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .lesson-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      }
+      .lesson-card h2 { margin-top: 0; color: #2980b9; }
+      .lesson-card p { color: #666; }
+      pre, code { direction: ltr; text-align: left; display: block; }
+    </style>
+  </head>
+  <body>
+    <h1>מרכז שיעורי CSS</h1>
+    <p>בחרו שיעור כדי להתחיל לתרגל:</p>
+    
+    <h2 class="section-title">יסודות ופריסה (Layout)</h2>
+    <div class="lesson-grid">
+      <a href="flexbox/index.html" class="lesson-card">
+        <h2>Flexbox</h2>
+        <p>למידה של סידור פריטים בצורה גמישה על ציר אחד.</p>
+      </a>
+      
+      <a href="grid/index.html" class="lesson-card">
+        <h2>CSS Grid</h2>
+        <p>בניית פריסות דו-ממדיות מורכבות בעזרת רשת.</p>
+      </a>
+      
+      <a href="position/index.html" class="lesson-card">
+        <h2>Position</h2>
+        <p>שליטה מדויקת במיקום של אלמנטים בדף.</p>
+      </a>
+    </div>
+
+    <h2 class="section-title">נושאים מתקדמים</h2>
+    <div class="lesson-grid">
+      <a href="animations/index.html" class="lesson-card">
+        <h2>Animations</h2>
+        <p>הוספת תנועה וחיים לאלמנטים בעזרת Keyframes.</p>
+      </a>
+      
+      <a href="responsiveness/index.html" class="lesson-card">
+        <h2>Responsiveness</h2>
+        <p>התאמת האתר לכל סוגי המסכים (Media Queries).</p>
+      </a>
+      
+      <a href="variables/index.html" class="lesson-card">
+        <h2>CSS Variables</h2>
+        <p>שימוש במשתנים לניהול צבעים וערכים בצורה חכמה.</p>
+      </a>
+    </div>
+
+    <div style="margin-top: 50px;">
+        <a href="SUMMARY.md" style="color: #2980b9; font-weight: bold; text-decoration: none;">קראו את סיכום ה-CSS המלא (Markdown)</a>
+    </div>
+  </body>
+</html>
