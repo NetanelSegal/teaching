@@ -1,4 +1,4 @@
-# Lesson 7: Objects (Basics)
+# Lesson 8: Objects (Basics)
 
 ## Goal
 Master the most fundamental data structure in JavaScript: the Object. Learn how to create objects, access their properties, and modify them.

@@ -1,4 +1,4 @@
-# Lesson 8: Arrays (Basics)
+# Lesson 10: Arrays (Basics)
 
 ## Goal
 Learn how to store ordered collections of data using Arrays. Master basic array operations like adding, removing, and iterating over elements.

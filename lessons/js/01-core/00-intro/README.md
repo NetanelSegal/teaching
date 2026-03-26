@@ -1,80 +1,77 @@
-# Lesson 0: Introduction to JavaScript (The "What, How, Why")
+# Lesson 0: Introduction & Code Structure
 
 ## Goal
-Understand the role of JavaScript in the modern web, how it executes, and the different environments it runs in.
+Understand how JavaScript executes, the internal mechanics of the JS Engine, the importance of "Modern Mode," and the rules for writing clean code.
 
-## 1. What is JavaScript?
-JavaScript (JS) is a high-level, interpreted programming language that conforms to the ECMAScript specification.
+## In-Depth Explanations
 
-- **The Language of the Web**: While HTML provides structure and CSS provides style, JS provides the **behavior**. It makes pages "alive."
-- **High-level**: You don't need to manage memory or talk directly to the CPU; the language handles the complex stuff for you.
-- **Interpreted**: Code is executed line-by-line. There is no need for a "compilation" step like in C++ or Java.
+### 1. What is JavaScript?
+JavaScript (JS) was initially created to "make web pages alive." The programs in this language are called *scripts*. They can be written right in a HTML page and execute automatically as the page loads.
 
-### Example: Making an Element Interactive
+### 2. How the Engine Works (Step-by-Step)
+JavaScript doesn't run "on its own." It needs a host environment (like a browser or Node.js) that contains a **JavaScript Engine**.
+
+The engine is a complex program that follows these steps:
+1.  **Parsing**: The engine reads ("parses") the script text.
+2.  **Compilation**: It converts the script into machine language (this is often called "Just-In-Time" or JIT compilation).
+3.  **Execution**: The machine code runs, very fast.
+
+**Popular Engines**:
+- **V8**: Developed by Google for Chrome. It's also the heart of **Node.js**.
+- **SpiderMonkey**: The first-ever JS engine, created by Brendan Eich (the creator of JS), now used in Firefox.
+- **JavaScriptCore**: Used in Safari (Nitro).
+
+### 3. What makes it unique?
+JS has three main strengths that make it the king of the web:
+1.  **Full integration with HTML/CSS**: It lives perfectly inside the browser.
+2.  **Simple things are done simply**: You don't need complex setup to start.
+3.  **Supported by all major browsers**: And enabled by default.
+
+### 4. Code Structure: The Syntax Rules
+- **Statements**: Commands that perform actions (e.g., `alert("Hello")`).
+- **Semicolons**: They separate statements. While JS often performs "Automatic Semicolon Insertion" (ASI), it's a professional standard to **always** use them to avoid bugs.
+- **Comments**:
+    - `//` for single-line.
+    - `/* ... */` for multi-line.
+    **Rule**: Use comments to explain **WHY** the code does something, not **WHAT** it does.
+
+### 5. The Modern Mode: "use strict"
+For a long time, JS evolved without breaking old code. This led to "mistakes" in the language design. In 2009, ES5 introduced **Strict Mode**. It locks the language into a "modern" state.
+
+**How to use it**: Place `"use strict";` at the very top of your script.
 ```javascript
-// Simple JS to change text on a button click
-const button = document.querySelector('button');
-button.onclick = () => {
-    alert('You clicked me!');
-};
+"use strict";
+
+// This code runs in modern mode
 ```
+*Note: In modern JS (using classes or modules), strict mode is enabled by default.*
 
-## 2. How does it run? (The Engine)
-JS doesn't run "on its own"; it needs a **Host Environment** with a **JS Engine**.
+## Diverse & Key Examples
 
-- **The Engine**: A program that reads and executes JS code.
-    - **V8**: Used by Google Chrome and Node.js.
-    - **SpiderMonkey**: Used by Firefox.
-- **The Engine's Job**: It takes your human-readable JS code and converts it into "Machine Code" that the computer's CPU can actually understand.
+### Example 1: The Engine in Action (JIT)
+Imagine you have a loop that runs 1,000 times. The engine notices this, "optimizes" that specific piece of code into machine language while the program is running, and makes it execute much faster than the first time.
 
-## 3. When/How/Why is it used?
-- **Client-Side (Front-end)**: Running in the user's browser to create dynamic UIs.
-- **Server-Side (Back-end)**: Running on a server using **Node.js** to handle databases, file systems, and network requests.
-- **Cross-Platform**: JS can be used to build mobile apps (React Native) and desktop apps (Electron).
-
-### Example: A Simple Calculation (Front or Back-end)
+### Example 2: Semicolon Pitfall
 ```javascript
-const price = 100;
-const tax = 0.17;
-const total = price + (price * tax);
-console.log(`The total price is: ${total}`);
+// This might fail without a semicolon because JS thinks the array is part of the previous line
+alert("Hello");
+[1, 2].forEach(alert);
 ```
 
-## 4. Ways to run/write JS (The Difference)
-Understanding *where* your code lives is critical.
-
-### A. Browser Console
-**Best for**: Testing one-liners or debugging.
-**How**: Open Browser -> F12 -> Console -> Type `alert("Hello")` -> Enter.
-
-### B. Internal Script
-**Best for**: Very small, page-specific scripts.
-**How**:
-```html
-<!-- Inside index.html -->
-<script>
-  console.log("This runs inside the HTML file!");
-</script>
-```
-
-### C. External Script (Recommended)
-**Best for**: Professional projects. Keeps code clean and reusable.
-**How**:
-```html
-<!-- index.html -->
-<script src="main.js"></script>
-```
+### Example 3: Comments Best Practice
 ```javascript
-// main.js
-console.log("This is a clean, external file.");
+// GOOD: We check the age to ensure the user is allowed to access adult content
+if (userAge >= 18) {
+  grantAccess();
+}
 ```
-
-### D. Node.js (CLI)
-**Best for**: Server-side logic, automation, and tools.
-**How**: Create `app.js`, then run in terminal: `node app.js`.
-
----
 
 ## External Resources
 - [An introduction to JavaScript - javascript.info](https://javascript.info/intro)
-- [The modern tutorial - javascript.info](https://javascript.info/hello-world)
+- [Hello, world! - javascript.info](https://javascript.info/hello-world)
+- [Code structure - javascript.info](https://javascript.info/code-structure)
+- [The modern mode, "use strict" - javascript.info](https://javascript.info/strict-mode)
+
+---
+## Practice
+Go to the `lab/` folder and complete the exercises in `exercises.js`.
