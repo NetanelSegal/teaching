@@ -1,0 +1,10 @@
+public static void printAscendingOrder(int n)
+public static void printDescendingOrder(int n)
+============================================
+public static int numOfDigits(int n)
+public static int sumOfDigits(int n)
+public static int biggestDigit(int n)
+public static boolean AreAllDigitsEven(int n)
+public static boolean isDivisor(int num, int divisor)
+public static boolean seekString(String str, char letter)
+public static boolean isPalindromeRec(String str)

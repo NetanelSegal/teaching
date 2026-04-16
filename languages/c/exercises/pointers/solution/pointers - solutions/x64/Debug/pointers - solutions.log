@@ -1,0 +1,8 @@
+﻿  pointers - solutions.c
+C:\Users\aharo\Dropbox\Work\כיתות\תרגילים\Algorithmic and Programming\pointers\pointers - solutions\pointers - solutions.c(48,16): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\aharo\Dropbox\Work\כיתות\תרגילים\Algorithmic and Programming\pointers\pointers - solutions\pointers - solutions.c(108,10): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+C:\Users\aharo\Dropbox\Work\כיתות\תרגילים\Algorithmic and Programming\pointers\pointers - solutions\pointers - solutions.c(108,10): message : consider using '%zd' in the format string
+C:\Users\aharo\Dropbox\Work\כיתות\תרגילים\Algorithmic and Programming\pointers\pointers - solutions\pointers - solutions.c(12): warning C4716: 'MyStrcpy': must return a value
+C:\Users\aharo\Dropbox\Work\כיתות\תרגילים\Algorithmic and Programming\pointers\pointers - solutions\pointers - solutions.c(50): warning C4716: 'MyStrcat': must return a value
+C:\Users\aharo\Dropbox\Work\כיתות\תרגילים\Algorithmic and Programming\pointers\pointers - solutions\pointers - solutions.c(35): warning C4716: 'MyStrncpy': must return a value
+  pointers - solutions.vcxproj -> C:\Users\aharo\Dropbox\Work\כיתות\תרגילים\Algorithmic and Programming\pointers\pointers - solutions\x64\Debug\pointers - solutions.exe

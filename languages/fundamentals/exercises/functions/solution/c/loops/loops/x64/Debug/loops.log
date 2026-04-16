@@ -1,0 +1,10 @@
+﻿  loops.c
+C:\Users\segal\Dropbox\Work\כיתות\תרגילים\functions\c\loops\loops.c(165,26): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\segal\Dropbox\Work\כיתות\תרגילים\functions\c\loops\loops.c(166,26): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\segal\Dropbox\Work\כיתות\תרגילים\functions\c\loops\loops.c(168,30): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\segal\Dropbox\Work\כיתות\תרגילים\functions\c\loops\loops.c(169,30): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\segal\Dropbox\Work\כיתות\תרגילים\functions\c\loops\loops.c(181,31): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\segal\Dropbox\Work\כיתות\תרגילים\functions\c\loops\loops.c(185,35): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\segal\Dropbox\Work\כיתות\תרגילים\functions\c\loops\loops.c(194,42): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+C:\Users\segal\Dropbox\Work\כיתות\תרגילים\functions\c\loops\loops.c(204,10): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+  loops.vcxproj -> C:\Users\segal\Dropbox\Work\כיתות\תרגילים\functions\c\loops\x64\Debug\loops.exe

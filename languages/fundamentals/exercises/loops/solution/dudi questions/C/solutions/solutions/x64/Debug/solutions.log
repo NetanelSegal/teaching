@@ -1,0 +1,11 @@
+﻿  solutions.c
+C:\Users\aharo\Dropbox\Work\כיתות\תרגילים\Algorithmic and Programming\loops\dudi questions\C\solutions\solutions\solutions.c(248,15): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\aharo\Dropbox\Work\כיתות\תרגילים\Algorithmic and Programming\loops\dudi questions\C\solutions\solutions\solutions.c(251,41): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+C:\Users\aharo\Dropbox\Work\כיתות\תרגילים\Algorithmic and Programming\loops\dudi questions\C\solutions\solutions\solutions.c(251,41): message : consider using '%zd' in the format string
+C:\Users\aharo\Dropbox\Work\כיתות\תרגילים\Algorithmic and Programming\loops\dudi questions\C\solutions\solutions\solutions.c(274,12): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+C:\Users\aharo\Dropbox\Work\כיתות\תרגילים\Algorithmic and Programming\loops\dudi questions\C\solutions\solutions\solutions.c(274,12): message : consider using '%zd' in the format string
+C:\Users\aharo\Dropbox\Work\כיתות\תרגילים\Algorithmic and Programming\loops\dudi questions\C\solutions\solutions\solutions.c(274,12): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'size_t'
+C:\Users\aharo\Dropbox\Work\כיתות\תרגילים\Algorithmic and Programming\loops\dudi questions\C\solutions\solutions\solutions.c(274,12): message : consider using '%zd' in the format string
+C:\Users\aharo\Dropbox\Work\כיתות\תרגילים\Algorithmic and Programming\loops\dudi questions\C\solutions\solutions\solutions.c(268,18): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\aharo\Dropbox\Work\כיתות\תרגילים\Algorithmic and Programming\loops\dudi questions\C\solutions\solutions\solutions.c(270,18): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  solutions.vcxproj -> C:\Users\aharo\Dropbox\Work\כיתות\תרגילים\Algorithmic and Programming\loops\dudi questions\C\solutions\x64\Debug\solutions.exe
