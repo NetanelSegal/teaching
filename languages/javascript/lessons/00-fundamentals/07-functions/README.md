@@ -1,4 +1,4 @@
-# Lesson 6: Functions (The Building Blocks)
+# Lesson 7: Functions (The Building Blocks)
 
 ## Goal
 Master the "verbs" of JavaScript. Learn how to write reusable logic, understand scope, and use modern arrow syntax to write cleaner code.

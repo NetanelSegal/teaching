@@ -10,7 +10,7 @@
 
 
 // Task 2: Check for Emptiness
-// Write a function 'isEmpty(obj)' that returns true if the object has no properties, 
+// Write a function 'isEmpty(obj)' that returns true if the object has no properties,
 // and false otherwise.
 // Write your code below:
 

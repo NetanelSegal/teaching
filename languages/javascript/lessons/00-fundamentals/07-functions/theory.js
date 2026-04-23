@@ -1,4 +1,4 @@
-// Lesson 6: Functions - Theory
+// Lesson 7: Functions - Theory
 
 // 1. Function Declaration (Hoisted)
 showMessage(); // Works!
@@ -30,3 +30,27 @@ function showGreeting() {
   console.log(message);
 }
 showGreeting();
+
+// 5. Callback Functions
+// A callback is a function passed into another function as an argument.
+function processInput(name, callback) {
+  console.log(`Processing ${name}...`);
+  callback(name);
+}
+
+processInput("Alice", (n) => console.log(`Finished processing ${n}!`));
+
+// Example with multiple callbacks
+function checkAccess(age, onAllowed, onDenied) {
+  if (age >= 18) {
+    onAllowed();
+  } else {
+    onDenied();
+  }
+}
+
+checkAccess(
+  20,
+  () => console.log("Access granted!"),
+  () => console.log("Access denied!")
+);
