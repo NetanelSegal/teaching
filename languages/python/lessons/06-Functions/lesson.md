@@ -1,83 +1,55 @@
-# Lesson 06: Functions - Architecting Reusable Code
+# Lesson 06: Functions - The Building Blocks of Logic
 
-Functions are the primary way to organize code into logical, reusable blocks.
+Functions are the primary way to organize code into logical, reusable, and testable blocks. They allow you to define a process once and execute it anywhere.
 
----
+**The Hook**
+Imagine you are building a calculator. Without functions, every time you want to add two numbers and format the output, you have to write three lines of code. If you do this 50 times, your script is 150 lines of repetitive mess. If you decide to change the formatting, you have to find and edit all 50 locations. Functions solve this by following the **DRY (Don't Repeat Yourself)** principle.
 
-## 1. Defining a Function
+**Deep Theory & Mechanics**
+At its core, a function is a "contract": you provide specific inputs (parameters), and it promises a specific output (return value).
+- **Definition vs. Call**: `def` creates the blueprint; the parentheses `()` execute it.
+- **Scope**: Variables created inside a function are **Local**. They live and die within that function's execution.
+- **Parameters**: The "slots" defined in the function signature.
+- **Arguments**: The actual data you pour into those slots.
+
+**Code Examples**
+
+*Good: Clear names, default values, and docstrings*
 ```python
-def greet(name="Guest"):  # "Guest" is a default parameter
-    """This is a docstring—it explains what the function does."""
-    return f"Hello, {name}!"
+def calculate_tax(price, tax_rate=0.17):
+    """
+    Calculates the final price including tax.
+    Default tax rate is 17% (Israel VAT).
+    """
+    if price < 0:
+        return 0
+    return price * (1 + tax_rate)
 
-# Calling the function
-message = greet("Alice")
+# Clear usage
+total = calculate_tax(100)
+custom_total = calculate_tax(100, tax_rate=0.05)
 ```
 
----
-
-## 2. Parameters vs Arguments
-- **Parameters:** The variables in the function definition (`name`).
-- **Arguments:** The actual values passed when calling the function (`"Alice"`).
-
-### Keyword vs Positional Arguments
+*Bad: Vague names, printing instead of returning, no validation*
 ```python
-def describe_pet(animal, name):
-    print(f"I have a {animal} named {name}")
+def stuff(p, t):
+    res = p * t # What is p? what is t?
+    print(res)  # Now I can't use 'res' for further calculations!
 
-describe_pet("Dog", "Rex")          # Positional
-describe_pet(name="Whiskers", animal="Cat") # Keyword (Order doesn't matter!)
+val = stuff(100, 1.17) # val is now None
 ```
 
----
+### 💡 [EXERCISE BREAK] - Open 'exercises/06-Functions' and complete the task.
 
-## 3. Scope: Local vs Global
-- **Local:** Variables created inside a function only exist inside that function.
-- **Global:** Variables created outside are accessible, but you shouldn't modify them inside a function unless you use the `global` keyword (avoid this if possible!).
+**Edge Cases & Senior Pitfalls**
+- **The Mutable Default Trap**: Never use a list or dictionary as a default argument. Python initializes that list **once** when the function is defined, not every time it's called.
+    - *Bad*: `def add_user(name, users=[])` -> all calls share the same list!
+    - *Fix*: `def add_user(name, users=None): if users is None: users = []`
+- **Shadowing**: Avoid naming a parameter `list`, `str`, or `sum`. This hides Python's built-in functions and will break your code later.
+- **Implicit Return**: If you forget the `return` statement, Python returns `None`. Always check your logic if a function suddenly "loses" data.
 
----
-
-## 4. Return Values
-A function without a `return` statement returns `None` by default.
-**Pro Tip:** You can return multiple values as a tuple:
-```python
-def get_stats(nums):
-    return min(nums), max(nums)
-
-low, high = get_stats([1, 5, 10]) # Unpacking
-```
-
----
-
-## 5. *args and **kwargs (Advanced)
-- `*args`: Allows a function to take any number of **positional** arguments (as a tuple).
-- `**kwargs`: Allows a function to take any number of **keyword** arguments (as a dictionary).
-
----
-
-## 6. Edge Cases & Pitfalls
-- **The "Mutable Default" Trap (CRITICAL):**
-  ```python
-  # BAD:
-  def add_item(item, items=[]):
-      items.append(item)
-      return items
-
-  print(add_item(1)) # [1]
-  print(add_item(2)) # [1, 2] !!! The list persists across calls.
-  ```
-  **Solution:** Always use `None` as a default for mutable types (lists/dicts).
-  ```python
-  def add_item(item, items=None):
-      if items is None: items = []
-      ...
-  ```
-- **Shadowing:** naming a local variable the same as a global variable.
-- **Missing `return`:** Expecting a value from a function that doesn't return anything.
-
----
-
-## 7. Summary Checklist
-- [ ] Can I explain the difference between `return` and `print`?
-- [ ] Do I know why I shouldn't use `[]` as a default argument?
-- [ ] Have I used docstrings in my functions?
+**Summary Checklist**
+- [ ] Does my function perform **one** specific task?
+- [ ] Did I use a docstring to explain the "why" and "what"?
+- [ ] Am I returning a value instead of just printing it?
+- [ ] Have I avoided mutable default arguments?

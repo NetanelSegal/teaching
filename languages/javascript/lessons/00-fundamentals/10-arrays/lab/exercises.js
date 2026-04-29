@@ -45,7 +45,7 @@
 
 
 // Task 6: Searching (Find)
-// 1. You have an array of users: 
+// 1. You have an array of users:
 //    [{id: 1, name: "John"}, {id: 2, name: "Pete"}, {id: 3, name: "Mary"}]
 // 2. Use 'find' to get the user object with id 2.
 // 3. Print the name of that user.

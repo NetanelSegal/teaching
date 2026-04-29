@@ -1,88 +1,102 @@
 # Lesson 03: Loops - Mastering Repetition
 
-Loops allow you to run a block of code multiple times. In Python, there are two main types: `for` and `while`.
+Efficiency in programming comes from automating repetitive tasks. In this lesson, we explore how to loop over data sets and handle iterations like a pro.
 
 ---
 
-## 1. The `for` Loop (Iterating over Sequences)
-The `for` loop is used when you have a collection (like a list, string, or range) and want to do something to every item.
+## ⚓ The Hook
+Imagine you have a folder containing 10,000 photos, and you need to resize each one to fit a website. Doing this manually would take weeks. With a **Loop**, you write the resize logic **once**, and Python executes it 10,000 times in seconds. Loops are the engine of automation.
 
-### The `range()` function
-`range(start, stop, step)` is the bread and butter of loops.
-- `range(5)` -> 0, 1, 2, 3, 4
-- `range(2, 6)` -> 2, 3, 4, 5
-- `range(0, 10, 2)` -> 0, 2, 4, 6, 8
+---
 
+## 🧠 Deep Theory & Mechanics
+
+### For vs. While
+Python provides two primary ways to repeat code:
+1.  **`for` loops:** Used when you know (or can calculate) how many times you need to iterate. They are designed to "walk through" a sequence (like a list or a range).
+2.  **`while` loops:** Used when you want to repeat code as long as a certain condition remains true. You use these when you *don't* know exactly when you'll finish (e.g., waiting for a user to click a "Quit" button).
+
+### The `range()` Function
+`range(start, stop, step)` generates a sequence of numbers. 
+- **Start:** Inclusive (default 0).
+- **Stop:** **Exclusive** (The most common source of "Off-by-One" errors!).
+- **Step:** The increment (default 1).
+
+---
+
+## 💻 Code Examples
+
+### The `for` Loop: Traditional vs. Modern
 ```python
-for i in range(3):
-    print(f"Attempt {i+1}")
+# Traditional loop with range
+for i in range(5):
+    print(f"Iteration {i}")
+
+# Modern loop: Iterating over a collection
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    print(f"I like {fruit}")
 ```
 
----
-
-## 2. The `while` Loop (Iterating until a Condition)
-Use `while` when you don't know how many times you'll need to run, but you know when to stop.
-
+### The `while` Loop: Safe Execution
 ```python
-password = ""
-while password != "secret":
+attempts = 0
+while attempts < 3:
     password = input("Enter password: ")
-```
-
----
-
-## 3. Loop Control: `break`, `continue`, and `else`
-- **`break`**: Stop the loop immediately and exit.
-- **`continue`**: Skip the rest of the *current* iteration and go to the next one.
-- **`else`**: (Unique to Python!) Runs only if the loop finished **naturally** (did NOT hit a `break`).
-
-**Example of `else` in a loop:**
-```python
-for n in range(2, 10):
-    if n == 11:
-        print("Found it!")
+    if password == "secret":
+        print("Access Granted")
         break
+    attempts += 1
 else:
-    print("Number not found in range.")
+    print("Locked out!")
 ```
 
----
-
-## 4. Nested Loops (Loops within Loops)
-Commonly used for 2D data (matrices) or combinations.
-```python
-for x in range(3):
-    for y in range(3):
-        print(f"Coordinates: ({x}, {y})")
-```
-**Performance Warning:** Nested loops can be slow. A loop of 1,000 inside a loop of 1,000 runs 1,000,000 times!
-
----
-
-## 5. Modern Technique: `enumerate()` and `zip()`
-- **`enumerate(list)`**: Gives you both the **index** and the **value**.
-- **`zip(list1, list2)`**: Iterates over two lists at the same time.
-
+### Advanced Iteration: `enumerate()` and `zip()`
 ```python
 names = ["Alice", "Bob"]
 scores = [85, 92]
 
+# ✅ Use enumerate to get the index AND the value
+for i, name in enumerate(names):
+    print(f"Rank {i+1}: {name}")
+
+# ✅ Use zip to iterate over two lists simultaneously
 for name, score in zip(names, scores):
-    print(f"{name} scored {score}")
+    print(f"{name} got {score}")
 ```
 
 ---
 
-## 6. Edge Cases & Pitfalls
-- **Infinite Loops:** A `while True` loop without a `break` will freeze your computer. Always have an exit condition.
-- **Modifying a list while looping:** 
-  - **Bad:** `for x in my_list: my_list.remove(x)`. This skips items because the list is shifting!
-  - **Good:** Loop over a **copy** of the list: `for x in my_list[:]`.
-- **Off-by-One Errors:** Remembering that `range(5)` stops at 4, not 5.
+### 💡 [EXERCISE BREAK] - Time to Practice! 
+Open `exercises/03-Loops` and complete the task.
 
 ---
 
-## 7. Summary Checklist
-- [ ] Do I know when to use `for` vs `while`?
-- [ ] Can I explain the `for-else` behavior?
-- [ ] Am I avoiding infinite loops?
+## ⚠️ Edge Cases & Senior Pitfalls
+
+### 1. The Infinite Loop
+A `while` loop that never reaches its exit condition will freeze your program and eat 100% of your CPU. Always ensure your condition will eventually become `False` or that you have a `break` statement.
+
+### 2. Modifying a List while Iterating
+**The Pitfall:** If you remove items from a list while looping over it, Python will skip elements because the list indices shift under its feet.
+**Senior Tip:** Always loop over a **copy** of the list: `for item in my_list[:]`.
+
+### 3. The `for...else` Curiosity
+In Python, an `else` block after a loop runs **only if the loop finished naturally** (without hitting a `break`). It’s perfect for "Search" scenarios:
+```python
+for item in database:
+    if item == "target":
+        print("Found!")
+        break
+else:
+    print("Not in database.")
+```
+
+---
+
+## ✅ Summary Checklist
+- [ ] I know when to use `for` vs `while`.
+- [ ] I understand that `range(0, 10)` stops at 9, not 10.
+- [ ] I can use `break` to exit a loop early and `continue` to skip an iteration.
+- [ ] I can use `enumerate()` to track the current index in a loop.
+- [ ] I can use `zip()` to combine two lists in a single loop.
