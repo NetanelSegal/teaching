@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab: Events Deep Dive</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
+        .box { border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; border-radius: 5px; }
+        .todo-list { list-style: none; padding: 0; }
+        .todo-item { background: #f4f4f4; margin: 5px 0; padding: 10px; cursor: pointer; border-radius: 4px; }
+        .todo-item.done { text-decoration: line-through; opacity: 0.6; background: #dff0d8; }
+        form { display: flex; flex-direction: column; gap: 10px; max-width: 300px; }
+        .outer { background: #3498db; padding: 50px; }
+        .inner { background: #e74c3c; padding: 20px; color: white; text-align: center; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h1>Event Mastery Missions</h1>
+
+    <!-- Mission 1: Event Delegation -->
+    <div class="box">
+        <h2>Mission 1: The Smart Todo List</h2>
+        <p>Click an item to mark it as done (Uses ONE listener on the parent!)</p>
+        <ul id="todo-list" class="todo-list">
+            <li class="todo-item" data-id="1">Buy Milk</li>
+            <li class="todo-item" data-id="2">Learn Event Delegation</li>
+            <li class="todo-item" data-id="3">Practice JS</li>
+        </ul>
+        <button id="add-todo-btn">Add New Item</button>
+    </div>
+
+    <!-- Exercise 4: Bubbling & Stop Propagation -->
+
+    <div class="box">
+        <h2>Mission 3: The Bubbling Trap</h2>
+        <p>Click the red box. We want to stop the blue box from "hearing" the click.</p>
+        <div class="outer" id="outer-box">
+            Outer Box (Blue)
+            <div class="inner" id="inner-box">
+                Inner Box (Red)
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="exercises.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab: Forms & Inputs</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; max-width: 500px; margin: auto; }
+        .box { border: 1px solid #ddd; padding: 20px; margin-bottom: 20px; border-radius: 8px; }
+        input, select, textarea { width: 100%; padding: 8px; margin: 8px 0; box-sizing: border-box; }
+        .error { color: red; font-size: 0.8rem; display: none; }
+        .success-msg { color: green; font-weight: bold; margin-top: 10px; }
+        #char-counter { font-size: 0.8rem; color: gray; }
+    </style>
+</head>
+<body>
+
+    <h1>Form Mastery Missions</h1>
+
+    <!-- Mission 1: Live Character Counter -->
+    <div class="box">
+        <h2>Mission 1: Live Counter</h2>
+        <label for="bio">Tell us about yourself (Max 50 chars):</label>
+        <textarea id="bio" maxlength="100"></textarea>
+        <div id="char-counter">Characters: 0 / 50</div>
+    </div>
+
+    <!-- Mission 2: Live Password Validation -->
+    <div class="box">
+        <h2>Mission 2: Password Shield</h2>
+        <label for="pass">Create Password:</label>
+        <input type="password" id="pass" placeholder="Min 6 characters">
+        <div id="pass-error" class="error">Password too short!</div>
+    </div>
+
+    <!-- Mission 3: The Registration Form -->
+    <div class="box">
+        <h2>Mission 3: Registration</h2>
+        <form id="reg-form">
+            <label>Full Name:</label>
+            <input type="text" name="fullName" required>
+            
+            <label>Choose Plan:</label>
+            <select name="plan">
+                <option value="free">Free ($0)</option>
+                <option value="pro">Pro ($10)</option>
+                <option value="ultra">Ultra ($50)</option>
+            </select>
+
+            <label>
+                <input type="checkbox" name="terms" required style="width: auto;"> 
+                I agree to the terms
+            </label>
+
+            <button type="submit">Sign Up Now</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script type="module" src="exercises.js"></script>
+</body>
+</html>

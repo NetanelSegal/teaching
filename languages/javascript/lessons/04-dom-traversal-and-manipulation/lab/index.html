@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab: Traversal & Manipulation</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
+        .box { border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; border-radius: 5px; }
+        .fruit-list { background: #f9f9f9; padding: 10px; border-radius: 4px; }
+        .user-card { border: 2px solid #3498db; padding: 10px; margin-top: 10px; border-radius: 8px; }
+        .post-item { background: #eee; padding: 10px; margin-bottom: 5px; display: flex; justify-content: space-between; }
+        .delete-btn { background: #e74c3c; color: white; border: none; padding: 5px 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h1>DOM Manipulation Missions</h1>
+
+    <!-- Exercise 1: Dynamic List -->
+    <div class="box">
+        <h2>Mission 1: The Fruit Basket</h2>
+        <ul id="fruit-list" class="fruit-list">
+            <!-- Items will be injected here -->
+        </ul>
+        <button id="add-fruit-btn">Add Random Fruit</button>
+    </div>
+
+    <!-- Exercise 2: Template Injection -->
+    <div class="box">
+        <h2>Mission 2: User Profiles</h2>
+        <div id="user-container">
+            <!-- User cards will be injected here -->
+        </div>
+        <button id="generate-user-btn">Generate User Card</button>
+    </div>
+
+    <!-- Exercise 3: Traversal & Removal -->
+    <div class="box">
+        <h2>Mission 3: Social Feed</h2>
+        <div id="feed">
+            <div class="post-item">
+                <span>Post #1: Hello World</span>
+                <button class="delete-btn">Delete</button>
+            </div>
+            <div class="post-item">
+                <span>Post #2: Learning JS</span>
+                <button class="delete-btn">Delete</button>
+            </div>
+            <div class="post-item">
+                <span>Post #3: DOM is awesome</span>
+                <button class="delete-btn">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="exercises.js"></script>
+</body>
+</html>
