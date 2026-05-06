@@ -1,3 +1,5 @@
 Backend_&_Fullstack/*
 Frontend/*
 Linux/*
+**/.env**
+**/node_modules/**

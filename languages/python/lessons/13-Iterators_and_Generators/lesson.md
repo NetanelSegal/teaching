@@ -38,12 +38,56 @@ for sq in get_squares_gen(1_000_000_000):
     print(sq)
 ```
 
+**How it Works Under the Hood: The Iterator Protocol**
+Before we had the `yield` keyword, we had to build iterators manually using classes. This helps you understand what Python is doing for you.
+
+```python
+class Countdown:
+    def __init__(self, start):
+        self.current = start
+
+    def __iter__(self):
+        return self # An iterator must return itself
+
+    def __next__(self):
+        if self.current <= 0:
+            raise StopIteration # Signal that the iteration is over
+        
+        self.current -= 1
+        return self.current + 1
+
+# Usage:
+counter = Countdown(3)
+print(next(counter)) # 3
+print(next(counter)) # 2
+print(next(counter)) # 1
+# print(next(counter)) # Raises StopIteration
+```
+
+**Generator Expressions: The One-Liner**
+Just as List Comprehensions `[]` create lists, Generator Expressions `()` create generators.
+
+```python
+# List Comprehension (uses RAM)
+squares_list = [x**2 for x in range(10)]
+
+# Generator Expression (uses almost ZERO RAM)
+squares_gen = (x**2 for x in range(10))
+
+print(squares_gen) # <generator object <genexpr> at ...>
+```
+
 **[EXERCISE BREAK]**
 1. **The Infinite Fibonacci**: Write a generator function `fibonacci()` that yields numbers in the sequence forever.
 2. **The File Streamer**: Write a generator that reads a text file line-by-line using `yield`, ensuring you can process a file larger than your RAM.
 
 **Edge Cases & Senior Pitfalls**
 - **The "One-Shot" Rule**: Generators are **single-use**. Once you've iterated through a generator, it's exhausted. If you need the data again, you must recreate the generator.
+```python
+gen = (x for x in range(3))
+list(gen) # [0, 1, 2]
+list(gen) # [] - The generator is empty now!
+```
 - **`next()` exhaustion**: If you manually call `next(gen)` and the generator is empty, it raises `StopIteration`. Loops handle this, but manual code needs care.
 - **Generator vs. List Comprehension**: Swapping `[x for x in data]` for `(x for x in data)` changes the result from a List to a Generator. This simple change can save gigabytes of RAM in production.
 
