@@ -6,7 +6,7 @@ This is a comprehensive, job-aligned Python curriculum designed for ORT. It tran
 
 -   **[lessons/](./lessons/)**: Theoretical modules following the "Hook-Theory-Lab" model. Now includes the **Professional Data Science Track (23-26)**.
 -   **[exercises/](./exercises/)**: Tiered practice modules (Foundation, Logic, Algorithmic Thinking, and Industry Readiness).
--   **[projects/](./projects/)**: Domain-specific project tracks (Games, AI, Automation, and Data Dashboards).
+-   **[projects/](./projects/)**: Domain-specific project tracks (Games, AI, Automation, and Data Dashboards). See the **[Project Roadmap](./projects/roadmap.md)** for more details.
 -   **[solutions/](./solutions/)**: Reference implementations for instructors.
 
 ## 🚀 The Learning Path

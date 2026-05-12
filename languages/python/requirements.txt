@@ -1,0 +1,28 @@
+# Core Engineering & Testing
+pytest==8.2.0
+python-dotenv==1.0.1
+
+# Web & Automation
+requests==2.31.0
+beautifulsoup4==4.12.3
+selenium==4.21.0
+
+# Data Science & Analysis
+numpy==1.26.4
+pandas==2.2.2
+matplotlib==3.8.4
+seaborn==0.13.2
+
+# Dashboards & Interactivity
+streamlit==1.34.0
+plotly==5.22.0
+
+# AI & Bots
+openai==1.30.1
+discord.py==2.3.2
+
+# Game Development
+pygame==2.5.2
+
+# Machine Learning
+scikit-learn==1.4.2
