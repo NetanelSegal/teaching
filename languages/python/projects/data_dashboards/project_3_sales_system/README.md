@@ -3,40 +3,50 @@
 ## 🌟 The Challenge
 Move beyond flat files! Build an "Enterprise" sales system where data is stored in a relational SQLite database. You'll learn how to design schemas, perform SQL queries from Python, and integrate database results directly into Pandas for advanced analytics.
 
-## 🗺️ Step-by-Step Learning Path
+## 🧠 Program Logic Flow
+1.  **Initialize**: Connect to the SQLite database. If it doesn't exist, create it and run the schema script to set up tables (`products`, `orders`).
+2.  **Input (CLI)**: Display a menu for the user (1. Add Product, 2. Place Order, 3. View Inventory, 4. Analytics).
+3.  **Process (SQL)**:
+    -   **Add Product**: INSERT a new row into the `products` table.
+    -   **Place Order**: 
+        -   Check if the product exists and has enough stock.
+        -   INSERT a row into the `orders` table.
+        -   UPDATE the `products` table to decrement the quantity.
+4.  **Analyze (Pandas)**: 
+    -   Execute a SELECT query with a JOIN to get order details and product prices.
+    -   Load the results into a Pandas DataFrame.
+    -   Group and sum data to calculate total revenue.
+5.  **Output**: Display the inventory table and revenue summary in the terminal.
 
-### Step 1: Research & Discovery
-- **Concept Focus:** Relational Databases, SQL Queries, Python-DB integration.
-- **Internal Reference:** [Lesson 26: SQL](../../lessons/26-SQL_and_Databases/), [Lesson 17: File I/O](../../lessons/17-File_IO_and_Serialization/)
-- **External Docs:** [SQLite3 Python Module](https://docs.python.org/3/library/sqlite3.html), [SQLAlchemy (Optional)](https://www.sqlalchemy.org/)
+## 🛠️ Implementation Tasks
 
-### Step 2: Environment & Scaffolding
-1. Create a virtual environment: `python -m venv .venv`
-2. Activate it and install dependencies: `pip install -r ../../../requirements.txt`
-3. Ensure your structure follows the ORT standard:
-   - `src/core.py` (Logic)
-   - `src/utils.py` (Helpers)
-   - `main.py` (Entry Point)
+### Phase 1: Setup & Scaffolding
+- **Task 1.1: Environment Isolation**
+  - Create a virtual environment: `python -m venv .venv`.
+  - Activate it and install the local dependencies: `pip install -r requirements.txt`.
+- **Task 1.2: Directory Structure**
+  - Ensure your project follows the structure:
+    - `src/core.py` (Database schema and SQL logic)
+    - `src/utils.py` (Pandas integration helpers)
+    - `main.py` (The system interface)
+    - `tests/` (Your validation scripts)
 
-### Step 3: Designing the Data Model
-- Define how your data looks. (e.g., "Products Table: id, name, price. Orders Table: id, product_id, quantity, date.")
-- Implement the SQL schema as a string or a setup script in `src/core.py`.
+### Phase 2: Core Logic (The Brains)
+- **Task 2.1: Schema Design**
+  - In `src/core.py`, write the SQL to create `products` and `orders` tables.
+  - Use `sqlite3` to execute these commands when the app starts.
+- **Task 2.2: CRUD Operations**
+  - Implement functions to `add_product()`, `place_order()`, and `get_inventory()`.
+  - *Engineering Standard:* Use parameterized queries (e.g., `cursor.execute("INSERT INTO... VALUES (?)", (val,))`) to prevent SQL injection.
 
-### Step 4: Building the "Brains" (Core Logic)
-- Implement the primary functionality in `src/core.py`.
-- **Engineering Standard:** Use parameterized queries to prevent SQL Injection. Never use f-strings to build SQL queries.
-
-### Step 5: The Interface (Wiring it up)
-- Implement the user interaction in `main.py`.
-- Import your logic from `src.core`, provide a menu for adding products/orders, and display filtered analytics.
-
-### Step 6: Defensive Engineering
-- Identify 3 ways a user could break your app (e.g., trying to order a non-existent product, entering a negative quantity, database file is locked or corrupted).
-- Implement `try/except` blocks for database operations and foreign key checks.
-
-### Step 7: Validation
-- Create a test in `tests/` that uses an in-memory database (`:memory:`) to verify your CRUD operations.
-- Run `pytest` to verify everything works.
+### Phase 3: Interface & Validation
+- **Task 3.1: SQL to Pandas**
+  - Implement a function `get_sales_report()`.
+  - Use `pd.read_sql_query()` to pull data from the database directly into a DataFrame for analysis.
+- **Task 3.2: Analytics**
+  - Calculate the total revenue and identify the top-selling products using Pandas.
+- **Task 3.3: Validation**
+  - Create a test in `tests/test_db.py` using an in-memory database (`:memory:`) to verify that orders correctly decrement the product stock.
 
 ## 🚀 Going Beyond (Stretch Goals)
 - **Advanced Joins:** Write a query that shows the total revenue per category by joining the Products and Orders tables.

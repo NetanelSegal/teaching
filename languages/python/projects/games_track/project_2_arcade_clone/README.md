@@ -3,40 +3,49 @@
 ## 🌟 The Challenge
 Revisit the golden age of gaming! Build a "Classic Arcade Clone" (like Pong, Snake, or Space Invaders). You'll learn the fundamentals of graphical game development, including the game loop, handling real-time events, and implementing basic 2D physics and collision detection.
 
-## 🗺️ Step-by-Step Learning Path
+## 🧠 Program Logic Flow
+1.  **Initialize**: Initialize Pygame, set up the display window, and create instances of game sprites (e.g., `Player`, `Ball`).
+2.  **The Game Loop**:
+    -   **Handle Events**: Listen for keyboard input (moves) or quit events.
+    -   **Update Logic**: 
+        -   Update positions based on velocity.
+        -   Check for collisions (e.g., ball hitting paddle or wall).
+        -   Handle boundary logic (e.g., screen wrapping or bouncing).
+    -   **Update State**: Update score, lives, or game over flags.
+    -   **Draw**: Clear the screen and redraw all sprites in their new positions.
+    -   **Tick**: Control the frame rate (e.g., 60 FPS) to ensure smooth gameplay.
 
-### Step 1: Research & Discovery
-- **Concept Focus:** The Game Loop, Event Handling, Collision Detection.
-- **Internal Reference:** [Lesson 15: OOP Basics](../../../lessons/15-OOP_Basics/), [Lesson 06: Functions](../../../lessons/06-Functions/)
-- **External Docs:** [Pygame Documentation](https://www.pygame.org/docs/), [Pygame Tutorials](https://www.pygame.org/wiki/tutorials)
+## 🛠️ Implementation Tasks
 
-### Step 2: Environment & Scaffolding
-1. Create a virtual environment: `python -m venv .venv`
-2. Activate it and install dependencies: `pip install -r ../../../requirements.txt`
-3. Ensure your structure follows the ORT standard:
-   - `src/core.py` (Logic)
-   - `src/utils.py` (Helpers)
-   - `main.py` (Entry Point)
+### Phase 1: Setup & Scaffolding
+- **Task 1.1: Environment Isolation**
+  - Create a virtual environment: `python -m venv .venv`.
+  - Activate it and install the local dependencies: `pip install -r requirements.txt`.
+- **Task 1.2: Directory Structure**
+  - Ensure your project follows the structure:
+    - `src/core.py` (Game objects and Physics)
+    - `src/utils.py` (Asset loading and UI helpers)
+    - `main.py` (The Pygame loop)
+    - `tests/` (Your validation scripts)
 
-### Step 3: Designing the Data Model
-- Define how your data looks. (e.g., "What properties do game objects have? Position, Velocity, Rect for collisions.")
-- Implement these as Classes (inheriting from `pygame.sprite.Sprite`) in `src/core.py`.
+### Phase 2: Core Logic (The Brains)
+- **Task 2.1: The Sprite Classes**
+  - In `src/core.py`, create classes for your game objects (e.g., `Player`, `Ball`, `Enemy`).
+  - Inherit from `pygame.sprite.Sprite`.
+  - Implement the `update()` method to handle movement.
+- **Task 2.2: Collision Detection**
+  - Implement a function `check_collisions(sprite_group_a, sprite_group_b)`.
+  - Use `pygame.sprite.groupcollide` or `pygame.sprite.spritecollide` to handle interactions.
+  - *Engineering Standard:* Keep the physics logic independent of the rendering code.
 
-### Step 4: Building the "Brains" (Core Logic)
-- Implement the primary functionality in `src/core.py`.
-- **Engineering Standard:** Keep functions "pure" where possible. Logic for calculating the next position or checking collisions should be separate from drawing.
-
-### Step 5: The Interface (Wiring it up)
-- Implement the user interaction in `main.py`.
-- Import your logic from `src.core`, initialize the Pygame window, and run the main game loop.
-
-### Step 6: Defensive Engineering
-- Identify 3 ways a user could break your app (e.g., missing assets like images/sounds, resizing the window incorrectly, invalid configuration).
-- Implement `try/except` blocks and asset verification logic.
-
-### Step 7: Validation
-- Create a test in `tests/` for your non-graphical logic (e.g., score calculation or boundary checks).
-- Run `pytest` to verify everything works.
+### Phase 3: Interface & Validation
+- **Task 3.1: The Game Loop**
+  - In `main.py`, initialize Pygame and create the screen.
+  - Implement the loop: `Handle Events -> Update Logic -> Draw Frame -> Clock Tick`.
+- **Task 3.2: Input Handling**
+  - Capture keyboard events (e.g., `pygame.K_LEFT`, `pygame.K_RIGHT`) to move the player.
+- **Task 3.3: Validation**
+  - Create a test in `tests/test_physics.py` that verifies boundary checks (e.g., "Does the ball bounce when it hits the wall?").
 
 ## 🚀 Going Beyond (Stretch Goals)
 - **Sound Effects & Music:** Add audio feedback for collisions, scoring, and background music.

@@ -4,25 +4,48 @@ Welcome to the Professional Tracks! These are designed to be taken after you hav
 
 Unlike the core curriculum, which focuses on language syntax and engineering principles, these tracks focus on **Domain-Specific Expertise**. Choose a track that interests you and follow the roadmap provided in its directory.
 
-## Available Tracks
+## 📂 Isolated Project Structure
+Every project in this directory is **completely isolated**. This means:
+1.  **Individual Download**: You can download just the folder for a specific project (e.g., `automation/project_1_organizer`) and it will work independently.
+2.  **Local Dependencies**: Each folder contains its own `requirements.txt`.
+3.  **Logical Walkthroughs**: Every project README now includes a **🧠 Program Logic Flow** section, providing a step-by-step walkthrough of the program's execution logic before you start coding.
+4.  **Standardized Layout**: Every project follows the ORT Engineering Standard (`src/`, `tests/`, `main.py`).
+
+## 🛠️ Environment Setup
+To work on any project, follow these steps inside the project's directory:
+1.  **Create Venv**: `python -m venv .venv`
+2.  **Activate Venv**:
+    - Windows: `.venv\Scripts\activate`
+    - Mac/Linux: `source .venv/bin/activate`
+3.  **Install Deps**: `pip install -r requirements.txt`
+
+## 🛤️ Available Tracks
 
 ### 🎮 [Games Track](./games_track)
-Learn how to build interactive experiences. Start with pure logic in the terminal and move up to 2D graphics and physics with Pygame.
-- **Key Skills**: Game loops, collision detection, state management.
+Learn how to build interactive experiences. 
+- **Difficulty**: Intermediate to Advanced.
+- **Outcomes**: Game loops, state management, 2D physics, asset handling.
+- **Key Libraries**: Pygame, Colorama.
 
 ### 📊 [Data Dashboards](./data_dashboards)
-Turn data into insights. Use the industry-standard "PyData" stack to clean, analyze, and visualize data in beautiful web-based dashboards.
-- **Key Skills**: Pandas, Plotly, Streamlit, Data Cleaning.
+Turn data into insights. 
+- **Difficulty**: Intermediate (Data) to Advanced (Dashboards).
+- **Outcomes**: Data cleaning, statistical visualization, SQL integration, Web UI.
+- **Key Libraries**: Pandas, Matplotlib, Seaborn, Streamlit, Plotly.
 
 ### 🤖 [AI & Bots](./ai_and_bots)
-Learn to harness the power of LLMs and build automated agents. You'll build chatbots, Discord bots, and learn the basics of machine learning.
-- **Key Skills**: OpenAI API, AsyncIO, Bot Frameworks, Scikit-Learn.
+Learn to harness the power of LLMs and build automated agents. 
+- **Difficulty**: Advanced.
+- **Outcomes**: API integration, AsyncIO, Bot event handling, ML pipelines.
+- **Key Libraries**: Gemini SDK, Discord.py, Scikit-Learn.
 
 ### ⚙️ [Automation](./automation)
-Make your computer work for you. Learn to scrape the web for data and automate tedious OS tasks like file management and scheduling.
-- **Key Skills**: Selenium, BeautifulSoup, `os`/`pathlib`, `cron` tasks.
+Make your computer work for you. 
+- **Difficulty**: Intermediate.
+- **Outcomes**: Web scraping, File system automation, Browser automation.
+- **Key Libraries**: Selenium, BeautifulSoup, Requests.
 
-## How to use this
-1.  **Finish the Core**: We recommend finishing at least up to Lesson 17 (File I/O) before starting any track.
-2.  **Pick a Track**: You don't have to do all of them. Pick one that aligns with your career goals.
-3.  **Build and Share**: Each track culminates in professional-grade projects suitable for a developer portfolio.
+## 🚀 How to use this
+1.  **Pick a Track**: Choose a track that aligns with your career goals.
+2.  **Follow the Roadmap**: Check the **[Project Roadmap](./roadmap.md)** for the recommended order of projects.
+3.  **Build and Validate**: Complete the **Implementation Tasks** in each project's README and run `pytest` to verify your logic.

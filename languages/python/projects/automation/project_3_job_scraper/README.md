@@ -3,40 +3,47 @@
 ## 🌟 The Challenge
 Job hunting is a full-time job in itself. Take the edge off by building an "Automated Job Scraper" that uses browser automation to log into a professional network or job board, search for specific roles (e.g., "Python Developer"), and export a structured list of opportunities into an Excel or CSV file.
 
-## 🗺️ Step-by-Step Learning Path
+## 🧠 Program Logic Flow
+1.  **Initialize**: Launch the Selenium WebDriver and navigate to the target job board.
+2.  **Navigate**: Perform search by locating input fields for "Role" and "Location" and submitting the form.
+3.  **Wait**: Use explicit waits to ensure the results page has fully loaded before attempting to scrape.
+4.  **Extract**: Loop through the list of job cards on the page and extract relevant details (Title, Company, Link).
+5.  **Clean/Structure**: Convert the raw data into a structured format (e.g., a list of dictionaries).
+6.  **Export**: Use Pandas to save the structured data into a CSV or Excel file for later review.
+7.  **Cleanup**: Close the browser session.
 
-### Step 1: Research & Discovery
-- **Concept Focus:** Browser Automation (Selenium/Playwright), Dynamic Content Handling, Data Export.
-- **Internal Reference:** [Lesson 17: File I/O](../../../lessons/17-File_IO_and_Serialization/), [Lesson 14: Exception Handling](../../../lessons/14-Exception_Handling/)
-- **External Docs:** [Selenium Python Docs](https://selenium-python.readthedocs.io/), [Playwright Python](https://playwright.dev/python/docs/intro), [Pandas (for export)](https://pandas.pydata.org/docs/)
+## 🛠️ Implementation Tasks
 
-### Step 2: Environment & Scaffolding
-1. Create a virtual environment: `python -m venv .venv`
-2. Activate it and install dependencies: `pip install -r ../../../requirements.txt`
-3. Ensure your structure follows the ORT standard:
-   - `src/core.py` (Logic)
-   - `src/utils.py` (Helpers)
-   - `main.py` (Entry Point)
+### Phase 1: Setup & Scaffolding
+- **Task 1.1: Environment Isolation**
+  - Create a virtual environment: `python -m venv .venv`.
+  - Activate it and install the local dependencies: `pip install -r requirements.txt`.
+- **Task 1.2: Directory Structure**
+  - Ensure your project follows the structure:
+    - `src/core.py` (Browser automation logic)
+    - `src/utils.py` (Data cleaning and export helpers)
+    - `main.py` (The main entry point)
+    - `tests/` (Your validation scripts)
 
-### Step 3: Designing the Data Model
-- Define how your data looks. (e.g., "What attributes does a 'Job Posting' have? Title, Company, Link, Date Posted.")
-- Implement these as Classes or Dictionaries in `src/core.py`.
+### Phase 2: Core Logic (The Brains)
+- **Task 2.1: The Browser Driver**
+  - In `src/core.py`, implement a class `JobScraper`.
+  - Add an `__init__` method that initializes the Selenium WebDriver (Chrome or Firefox).
+  - Add a `close()` method to safely shut down the browser.
+- **Task 2.2: Searching for Jobs**
+  - Implement a method `search_jobs(keyword, location)`.
+  - It should navigate to the job board, find the search inputs, type the keyword/location, and click the search button.
+  - *Engineering Standard:* Use `WebDriverWait` to handle slow-loading elements instead of `time.sleep()`.
 
-### Step 4: Building the "Brains" (Core Logic)
-- Implement the primary functionality in `src/core.py`.
-- **Engineering Standard:** Keep functions "pure." No `input()` or `print()` inside this file. Logic should handle data extraction from page elements.
-
-### Step 5: The Interface (Wiring it up)
-- Implement the user interaction in `main.py`.
-- Import your logic from `src.core`, initialize the browser driver, and orchestrate the search and scraping flow.
-
-### Step 6: Defensive Engineering
-- Identify 3 ways a user could break your app (e.g., login credentials incorrect, CAPTCHA appeared, element not found due to slow loading).
-- Implement `try/except` blocks and explicit waits.
-
-### Step 7: Validation
-- Create a test in `tests/` for your data cleaning and export logic.
-- Run `pytest` to verify everything works.
+### Phase 3: Interface & Validation
+- **Task 3.1: Data Extraction**
+  - Implement a method `extract_listings()`.
+  - It should find all job listing elements on the results page and extract the Title, Company, and Link for each.
+- **Task 3.2: Export to CSV/Excel**
+  - In `src/utils.py`, implement a function `save_to_file(data, filename)`.
+  - Use the `pandas` library to convert your list of dictionaries into a DataFrame and export it.
+- **Task 3.3: Validation**
+  - Create a test in `tests/test_utils.py` that verifies the data cleaning and CSV export works with a mock data list.
 
 ## 🚀 Going Beyond (Stretch Goals)
 - **Headless Mode:** Run the scraper in the background without opening a visible browser window.

@@ -4,16 +4,15 @@ import "dotenv/config";
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 export async function askQuestion(question) {
-  // Task 2: Embedding is still typically handled by a specific model
-  // Note: @google/genai might have a different method for embeddings in May 2026
+  // Task 3.1: Embed the user question using text-embedding-004
   const embeddingResponse = await ai.models.embedContent({
-    model: "text-embedding-3-small",
+    model: "text-embedding-004",
     contents: [{ parts: [{ text: question }] }],
   });
 
-  // Task 3: Use gemini-3-flash-preview for RAG generation
+  // Task 3.2: Use gemini-2.5-flash for RAG generation
   const response = await ai.models.generateContent({
-    model: "gemini-3-flash-preview",
+    model: "gemini-2.5-flash",
     contents: `... RAG Prompt with Context ...`,
   });
 

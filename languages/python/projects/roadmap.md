@@ -32,7 +32,7 @@ Use this roadmap to track your progress as you move from a student to a professi
 
 ### 4. AI & Bots
 *Focus: APIs and Modern Tooling*
-- [ ] **Project 1: AI Chatbot** (OpenAI/History)
+- [ ] **Project 1: AI Chatbot** (Gemini/History)
 - [ ] **Project 2: Discord Bot** (AsyncIO/Integrations)
 - [ ] **Project 3: ML Agent** (Scikit-Learn/Predictions)
 

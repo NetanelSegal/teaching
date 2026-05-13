@@ -3,40 +3,51 @@
 ## 🌟 The Challenge
 Level up your game dev skills! Build a "2D Platformer" with multiple levels, scrolling backgrounds, and animated characters. You'll master advanced game concepts like sprite groups, asset management, state-driven animations, and basic enemy AI.
 
-## 🗺️ Step-by-Step Learning Path
+## 🧠 Program Logic Flow
+1.  **Initialize**: 
+    -   Load level data (tilemap).
+    -   Initialize the `Camera` and `Player` state.
+    -   Populate Sprite Groups with tiles, platforms, and enemies.
+2.  **The Game Loop**:
+    -   **Events**: Process jumping and movement inputs.
+    -   **Update Logic**:
+        -   **Gravity**: Apply vertical acceleration to the player.
+        -   **Horizontal Movement**: Update player X based on input.
+        -   **Collisions**: Resolve X-axis and Y-axis collisions with solid tiles.
+        -   **Enemy AI**: Update enemy movement patterns (patrolling).
+        -   **Camera**: Adjust the camera view to follow the player.
+    -   **Animations**: Update the player's sprite frame based on their state (Run, Jump, Fall).
+    -   **Draw**: Render the level, background, and all sprites using the camera offset.
 
-### Step 1: Research & Discovery
-- **Concept Focus:** Sprite Groups, Camera/Scrolling, Enemy AI.
-- **Internal Reference:** [Lesson 16: Advanced OOP](../../../lessons/16-OOP_Advanced_and_Dataclasses/), [Lesson 15: OOP Basics](../../../lessons/15-OOP_Basics/)
-- **External Docs:** [Pygame Sprite Groups](https://www.pygame.org/docs/ref/sprite.html), [Game AI Patterns](https://gameprogrammingpatterns.com/state.html)
+## 🛠️ Implementation Tasks
 
-### Step 2: Environment & Scaffolding
-1. Create a virtual environment: `python -m venv .venv`
-2. Activate it and install dependencies: `pip install -r ../../../requirements.txt`
-3. Ensure your structure follows the ORT standard:
-   - `src/core.py` (Logic)
-   - `src/utils.py` (Helpers)
-   - `main.py` (Entry Point)
+### Phase 1: Setup & Scaffolding
+- **Task 1.1: Environment Isolation**
+  - Create a virtual environment: `python -m venv .venv`.
+  - Activate it and install the local dependencies: `pip install -r requirements.txt`.
+- **Task 1.2: Directory Structure**
+  - Ensure your project follows the structure:
+    - `src/core.py` (Advanced Sprite logic, AI)
+    - `src/utils.py` (Level loading, Tilemap parsing)
+    - `main.py` (The main game entry)
+    - `tests/` (Your validation scripts)
 
-### Step 3: Designing the Data Model
-- Define how your data looks. (e.g., "How is a 'Level' represented? Tilemap, Enemy spawn points, Player start.")
-- Implement these as Classes in `src/core.py`.
+### Phase 2: Core Logic (The Brains)
+- **Task 2.1: The Tilemap System**
+  - In `src/utils.py`, implement a function `load_level(level_file)`.
+  - It should read a text file or JSON representing the level and return a Sprite Group of `Tile` objects.
+- **Task 2.2: Physics & Gravity**
+  - In `src/core.py`, implement a `Player` class with `velocity_y` for gravity.
+  - Implement jumping and vertical collision handling.
+  - *Engineering Standard:* Use a State Machine (e.g., IDLE, WALKING, JUMPING, FALLING) to manage animations.
 
-### Step 4: Building the "Brains" (Core Logic)
-- Implement the primary functionality in `src/core.py`.
-- **Engineering Standard:** Use a State Machine for animations and enemy behavior to keep logic clean and predictable.
-
-### Step 5: The Interface (Wiring it up)
-- Implement the user interaction in `main.py`.
-- Import your logic from `src.core`, load your assets, and manage the transition between levels.
-
-### Step 6: Defensive Engineering
-- Identify 3 ways a user could break your app (e.g., corrupted level data, missing sprite sheets, memory leaks from not cleaning up sprite groups).
-- Implement `try/except` blocks and resource management.
-
-### Step 7: Validation
-- Create a test in `tests/` for your level loading and character state logic.
-- Run `pytest` to verify everything works.
+### Phase 3: Interface & Validation
+- **Task 3.1: Camera Scrolling**
+  - Implement a `Camera` class that offsets the drawing of all sprites based on the player's position.
+- **Task 3.2: Enemy AI**
+  - Create an `Enemy` class that moves back and forth between two points (patrolling).
+- **Task 3.3: Validation**
+  - Create a test in `tests/test_player.py` that verifies the player cannot fall through solid tiles.
 
 ## 🚀 Going Beyond (Stretch Goals)
 - **Level Editor:** Create a simple tool to design levels and save them as JSON files.

@@ -3,40 +3,51 @@
 ## 🌟 The Challenge
 Stop refreshing that product page! Build a "Price Drop Tracker" that automatically monitors an e-commerce site for a specific item. The script will scrape the current price at regular intervals and send you an email or notification the moment the price falls below your budget.
 
-## 🗺️ Step-by-Step Learning Path
+## 🧠 Program Logic Flow
+1.  **Request**: The program takes a product URL and makes an HTTP request to fetch the page content.
+2.  **Parse**: Use `BeautifulSoup` to find the specific HTML element containing the price.
+3.  **Clean**: Extract the text, remove non-numeric characters (e.g., `$`, `,`), and convert the result to a `float`.
+4.  **Compare**: Check if the `current_price` is less than or equal to the `target_price`.
+5.  **Notify**: If the price dropped, trigger the notification logic (e.g., send an email or print an alert).
+6.  **Schedule**: The program waits (e.g., 1 hour) before repeating the process to check for new updates.
 
-### Step 1: Research & Discovery
-- **Concept Focus:** Web Scraping, HTTP Requests, SMTP for Emails.
-- **Internal Reference:** [Lesson 17: File I/O](../../../lessons/17-File_IO_and_Serialization/), [Lesson 06: Functions](../../../lessons/06-Functions/)
-- **External Docs:** [BeautifulSoup Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/), [Requests: HTTP for Humans](https://requests.readthedocs.io/), [smtplib (Email)](https://docs.python.org/3/library/smtplib.html)
+## 🛠️ Implementation Tasks
 
-### Step 2: Environment & Scaffolding
-1. Create a virtual environment: `python -m venv .venv`
-2. Activate it and install dependencies: `pip install -r ../../../requirements.txt`
-3. Ensure your structure follows the ORT standard:
-   - `src/core.py` (Logic)
-   - `src/utils.py` (Helpers)
-   - `main.py` (Entry Point)
+### Phase 1: Setup & Scaffolding
+- **Task 1.1: Environment Isolation**
+  - Create a virtual environment: `python -m venv .venv`.
+  - Activate it and install the local dependencies: `pip install -r requirements.txt`.
+- **Task 1.2: Directory Structure**
+  - Ensure your project follows the structure:
+    - `src/core.py` (Scraping and Logic)
+    - `src/utils.py` (Helper functions for email/notifications)
+    - `main.py` (The main entry point)
+    - `tests/` (Your validation scripts)
 
-### Step 3: Designing the Data Model
-- Define how your data looks. (e.g., "What product details do we need to store? URL, target price, selector for price tag.")
-- Implement these as Classes or Dictionaries in `src/core.py`.
+### Phase 2: Core Logic (The Brains)
+- **Task 2.1: The Price Scraper**
+  - In `src/core.py`, implement a function `get_price(url)`.
+  - It should:
+    1. Make an HTTP GET request using `requests`.
+    2. Parse the HTML with `BeautifulSoup`.
+    3. Use CSS selectors to find the price tag.
+    4. Clean the string (remove currency symbols) and convert it to a `float`.
+  - *Engineering Standard:* Set a custom `User-Agent` header to avoid being blocked.
+- **Task 2.2: The Comparison Logic**
+  - Implement a function `check_price(current_price, target_price)`.
+  - It should return `True` if the current price is less than or equal to the target.
 
-### Step 4: Building the "Brains" (Core Logic)
-- Implement the primary functionality in `src/core.py`.
-- **Engineering Standard:** Keep functions "pure." No `input()` or `print()` inside this file. It should only take a URL/HTML and return the numeric price.
-
-### Step 5: The Interface (Wiring it up)
-- Implement the user interaction in `main.py`.
-- Import your logic from `src.core`, handle the scheduling of the check, and trigger the notification logic.
-
-### Step 6: Defensive Engineering
-- Identify 3 ways a user could break your app (e.g., invalid URL, site structure changed/selector failed, network timeout).
-- Implement `try/except` blocks and input validation.
-
-### Step 7: Validation
-- Create a test in `tests/` for your core logic using a local HTML file instead of a live site.
-- Run `pytest` to verify everything works.
+### Phase 3: Interface & Validation
+- **Task 3.1: Notification System**
+  - In `src/utils.py`, implement a basic function to "notify" the user. 
+  - *Level 1:* Just print a special message.
+  - *Level 2:* Implement `smtplib` to send a real email.
+- **Task 3.2: The Main Loop**
+  - In `main.py`, combine the scraper and notification logic.
+  - Set it to run once every hour (or use the `schedule` library if you want to be fancy).
+- **Task 3.3: Validation**
+  - Create a test in `tests/test_scraper.py`.
+  - Use a local `.html` file (save a sample product page) to test your `get_price` function without hitting the live website repeatedly.
 
 ## 🚀 Going Beyond (Stretch Goals)
 - **Multi-Store Support:** Track the same product across 3 different websites and find the absolute lowest price.

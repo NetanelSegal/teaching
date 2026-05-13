@@ -2,7 +2,7 @@
 
 ## 1. The Hook (5 mins)
 You launched your AI app. It's a viral success. 
-Suddenly, your OpenAI bill is $500/day, and your server is crashing because API responses take 15 seconds to return. 
+Suddenly, your API bill is skyrocketing, and your server is crashing because API responses take 15 seconds to return. 
 
 Standard CRUD logic isn't enough for AI. You need to optimize for **Cost, Speed, and User Experience**.
 
@@ -15,7 +15,7 @@ If two users ask for a "3-day trip to Paris," why pay for the AI twice?
 
 ### Cost Management (Token Tracking)
 You must know exactly how much each user is costing you.
-- **Log Usage**: Always save `usage.total_tokens` to your database.
+- **Log Usage**: Always save `usageMetadata.totalTokenCount` to your database.
 - **Limits**: Set hard caps on how many tokens a user can consume per day.
 
 ### UX: Streaming (Server-Sent Events)
@@ -32,10 +32,9 @@ Normal Redis caching works if the prompt is identical. But in AI, "How's the wea
 - **The Solution**: **Semantic Caching**. 
 - **The Process**: Embed the incoming prompt. Search your vector DB for a near-identical embedding. If the Cosine Similarity is > 0.98, return the cached result. This can save up to 40% on API costs.
 
-#### 2. Why Tiktoken?
-You can't just `string.length / 4` to estimate costs. 
-- **The tool**: `tiktoken` is the exact library OpenAI uses to split text into tokens. 
-- **Production Use**: You should count tokens *before* sending the request to ensure it fits in the context window, and *after* to bill the user accurately.
+#### 2. Token Estimation
+You can't just `string.length / 4` to estimate costs accurately. 
+- **The tool**: Gemini provides a `countTokens()` method in the SDK to help you estimate costs *before* making the full generation call.
 
 #### 3. SSE vs. WebSockets for Streaming
 - **WebSockets**: Bi-directional. Good for real-time multiplayer.
@@ -54,13 +53,12 @@ You can't just `string.length / 4` to estimate costs.
 ## Technical Reference
 ```javascript
 // Streaming Example
-const stream = await openai.chat.completions.create({
-  model: "gpt-4",
-  messages: [{ role: "user", content: "Write a poem" }],
-  stream: true,
+const stream = await ai.models.generateContentStream({
+  model: "gemini-2.5-flash",
+  contents: "Write a long story.",
 });
 
 for await (const chunk of stream) {
-  process.stdout.write(chunk.choices[0]?.delta?.content || "");
+  console.log(chunk.text);
 }
 ```

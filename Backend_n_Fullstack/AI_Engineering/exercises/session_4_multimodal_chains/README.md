@@ -7,26 +7,37 @@ Create a multimodal pipeline that processes images (receipts) and uses prompt ch
 - `starter/`: Your workspace.
 - `solution/`: Reference implementation.
 
-## Tasks
+## 🧠 Program Logic Flow
+1.  **Ingestion**: An image (receipt) is uploaded via Express and converted to `base64`.
+2.  **Vision (Extraction)**:
+    -   The `base64` image is sent to Gemini 2.5 Flash.
+    -   The model extracts text data (Merchant, Total) and returns it as structured JSON.
+3.  **Chain (Classification)**:
+    -   The Merchant Name is passed to a second AI call (prompt chain).
+    -   A specialized prompt classifies the merchant into a category (Food, Office, etc.).
+4.  **Response**: The final JSON object containing both the extracted data and the assigned category is returned.
 
-### 1. Image Upload
-- Setup `multer` in Express to handle file uploads.
-- Convert the uploaded image to a `base64` string.
+## 🛠️ Implementation Tasks
 
-### 2. Vision Extraction (vision.js)
-- Send the image to GPT-4o.
-- Prompt: "Extract the merchant name and total amount from this receipt. Return ONLY JSON."
-- Validate the output.
+### Phase 1: Setup & Upload
+- **Task 1.1: Project Setup**
+  - Initialize the project and install: `@google/genai`, `express`, `multer`, `dotenv`.
+- **Task 1.2: Multer Config**
+  - Setup file upload handling in `index.js`.
+  - Create a utility to convert the buffer to `base64`.
 
-### 3. Prompt Chaining (categorize.js)
-- Take the merchant name from Step 2.
-- Send a second prompt to a smaller model (like GPT-4o-mini).
-- Prompt: "Categorize this merchant: [Merchant Name]. Options: Food, Travel, Office, Other. Return only the category name."
+### Phase 2: The Multimodal Chain
+- **Task 2.1: Vision Extraction (`vision.js`)**
+  - Implement a function `extractReceiptData(imageBase64)`.
+  - Use the `inline_data` format in the Gemini contents array.
+- **Task 2.2: Categorization (`categorize.js`)**
+  - Implement a function `categorizeMerchant(name)`.
+  - Create a chain where the output of Task 2.1 is the input for this task.
 
-### 4. Final API
-- Combine both steps into a single `POST /process-receipt` endpoint.
+### Phase 3: The API Layer
+- **Task 3.1: Combine & Respond**
+  - Implement `POST /process-receipt`.
+  - Ensure both AI calls happen in sequence and handle errors at each step.
 
----
-
-## Challenge
+## 🚀 Challenge
 If the total amount is over $100, add a field `requiresManagerApproval: true` to the final response.

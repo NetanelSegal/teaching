@@ -3,40 +3,49 @@
 ## 🌟 The Challenge
 Embark on a journey of logic! Build a text-based "Terminal RPG" where players navigate through rooms, manage an inventory of items, and engage in turn-based combat with enemies. This project focuses on managing complex game states and building interactive command-line experiences using only Python logic.
 
-## 🗺️ Step-by-Step Learning Path
+## 🧠 Program Logic Flow
+1.  **Initialize**: Set up the game map (rooms, connections), player stats, and starting inventory.
+2.  **Input Loop**: 
+    -   Display the current room description and available directions/items.
+    -   Wait for user command (e.g., "go north", "take sword", "fight goblin").
+3.  **Process Command**:
+    -   **Movement**: Update player position if the direction is valid.
+    -   **Action**: Execute logic for picking up items or using them.
+    -   **Combat**: If an enemy is present and a fight is triggered, enter turn-based combat logic (calculate damage, update HP).
+4.  **Check Game State**: Check if the player has reached the exit, defeated the boss, or run out of HP.
+5.  **Output**: Display the result of the action and loop back to step 2.
 
-### Step 1: Research & Discovery
-- **Concept Focus:** State Management, Turn-based Logic, Inventory Systems.
-- **Internal Reference:** [Lesson 05: Lists & Matrices](../../../lessons/05-Lists_and_Matrices/), [Lesson 08: Dictionaries](../../../lessons/08-Dictionaries_and_Sets/)
-- **External Docs:** [Python random module](https://docs.python.org/3/library/random.html), [Colorama (for CLI colors)](https://pypi.org/project/colorama/)
+## 🛠️ Implementation Tasks
 
-### Step 2: Environment & Scaffolding
-1. Create a virtual environment: `python -m venv .venv`
-2. Activate it and install dependencies: `pip install -r ../../../requirements.txt`
-3. Ensure your structure follows the ORT standard:
-   - `src/core.py` (Logic)
-   - `src/utils.py` (Helpers)
-   - `main.py` (Entry Point)
+### Phase 1: Setup & Scaffolding
+- **Task 1.1: Environment Isolation**
+  - Create a virtual environment: `python -m venv .venv`.
+  - Activate it and install the local dependencies: `pip install -r requirements.txt`.
+- **Task 1.2: Directory Structure**
+  - Ensure your project follows the structure:
+    - `src/core.py` (Game logic, Player/Enemy classes)
+    - `src/utils.py` (CLI display helpers, colorama wrapping)
+    - `main.py` (The main game loop)
+    - `tests/` (Your validation scripts)
 
-### Step 3: Designing the Data Model
-- Define how your data looks. (e.g., "What attributes does a 'Player' have? HP, Inventory, Current Room.")
-- Implement these as Classes or Dictionaries in `src/core.py`.
+### Phase 2: Core Logic (The Brains)
+- **Task 2.1: The Data Model**
+  - In `src/core.py`, create a `Player` class and an `Enemy` class.
+  - Attributes: `hp`, `attack`, `inventory` (list), `position`.
+- **Task 2.2: Combat System**
+  - Implement a function `calculate_damage(attacker, defender)`.
+  - Add logic for critical hits or random misses using the `random` module.
+  - *Engineering Standard:* Ensure this function is testable without running the whole game.
 
-### Step 4: Building the "Brains" (Core Logic)
-- Implement the primary functionality in `src/core.py`.
-- **Engineering Standard:** Keep functions "pure." No `input()` or `print()` inside this file. It should take the current state and an action, and return the new state.
-
-### Step 5: The Interface (Wiring it up)
-- Implement the user interaction in `main.py`.
-- Import your logic from `src.core` and connect it to the user input loop.
-
-### Step 6: Defensive Engineering
-- Identify 3 ways a user could break your app (e.g., entering an invalid command, trying to use an item they don't have, moving to a non-existent room).
-- Implement `try/except` blocks and input validation.
-
-### Step 7: Validation
-- Create a test in `tests/` for your core logic (e.g., combat calculations).
-- Run `pytest` to verify everything works.
+### Phase 3: Interface & Validation
+- **Task 3.1: The Navigation System**
+  - Create a dictionary representing a simple map of rooms.
+  - Implement a function to move the player between rooms based on user input (e.g., "north", "south").
+- **Task 3.2: The Main Game Loop**
+  - In `main.py`, implement the loop: `Display State -> Get Input -> Update State -> Check Win/Loss`.
+  - Use `colorama` to make the output readable (e.g., Red for damage, Green for health).
+- **Task 3.3: Validation**
+  - Create a test in `tests/test_combat.py` that verifies damage calculation works as expected.
 
 ## 🚀 Going Beyond (Stretch Goals)
 - **Save/Load System:** Use the `json` module to allow players to save their progress and resume later.

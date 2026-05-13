@@ -3,40 +3,47 @@
 ## 🌟 The Challenge
 Stop guessing and start predicting! Build a "Predictive Analytics Tool" using Scikit-Learn to train a machine learning model on real data. Whether you're predicting house prices, movie ratings, or stock trends, you'll learn the full ML pipeline: from data splitting and model training to evaluation and making live predictions.
 
-## 🗺️ Step-by-Step Learning Path
+## 🧠 Program Logic Flow
+1.  **Prepare**: Load the dataset and split it into training (80%) and testing (20%) sets.
+2.  **Preprocess**: Clean the data and convert categorical features into numeric formats.
+3.  **Train**: Choose a model (e.g., `RandomForestRegressor`) and fit it to the training data.
+4.  **Evaluate**: Run the model on the test set and calculate the accuracy/error (e.g., Mean Squared Error).
+5.  **Persist**: Save the trained model to a file using `joblib`.
+6.  **Predict**: 
+    -   Wait for user input (feature values).
+    -   Pass the values through the trained model.
+    -   Display the prediction result to the user.
 
-### Step 1: Research & Discovery
-- **Concept Focus:** Machine Learning Pipeline, Regression vs Classification, Model Evaluation.
-- **Internal Reference:** [Lesson 23: NumPy](../../lessons/23-NumPy_and_Numerical_Computing/), [Lesson 24: Pandas](../../lessons/24-Pandas_and_Data_Analysis/)
-- **External Docs:** [Scikit-Learn Documentation](https://scikit-learn.org/stable/), [Machine Learning Guide](https://developers.google.com/machine-learning/crash-course)
+## 🛠️ Implementation Tasks
 
-### Step 2: Environment & Scaffolding
-1. Create a virtual environment: `python -m venv .venv`
-2. Activate it and install dependencies: `pip install -r ../../../requirements.txt`
-3. Ensure your structure follows the ORT standard:
-   - `src/core.py` (ML Pipeline Logic)
-   - `src/utils.py` (Data Loading/Helpers)
-   - `main.py` (Prediction Interface)
+### Phase 1: Setup & Scaffolding
+- **Task 1.1: Environment Isolation**
+  - Create a virtual environment: `python -m venv .venv`.
+  - Activate it and install the local dependencies: `pip install -r requirements.txt`.
+- **Task 1.2: Directory Structure**
+  - Ensure your project follows the structure:
+    - `src/core.py` (ML Pipeline: Train/Evaluate/Predict)
+    - `src/utils.py` (Data loading and Preprocessing)
+    - `main.py` (The prediction interface)
+    - `tests/` (Your validation scripts)
 
-### Step 3: Designing the Data Model
-- Define how your data looks. (e.g., "What are the 'Features' (X) and what is the 'Target' (y)? How do we handle categorical data?")
-- Implement data preprocessing steps in `src/core.py`.
+### Phase 2: Core Logic (The Brains)
+- **Task 2.1: Data Preprocessing**
+  - In `src/utils.py`, implement a function `prepare_data(csv_path)`.
+  - Use Pandas to load the data, handle missing values, and encode categorical variables (e.g., `pd.get_dummies()`).
+- **Task 2.2: The ML Pipeline**
+  - In `src/core.py`, implement a class `PredictorAgent`.
+  - Add a `train(X, y)` method that fits a Scikit-Learn model (e.g., `LinearRegression` or `RandomForest`).
+  - Add an `evaluate(X_test, y_test)` method that returns metrics like R² or Accuracy.
+  - *Engineering Standard:* Use `train_test_split` from Scikit-Learn to ensure your evaluation is unbiased.
 
-### Step 4: Building the "Brains" (Core Logic)
-- Implement the primary functionality in `src/core.py`.
-- **Engineering Standard:** Use a consistent `train_model()` -> `evaluate_model()` -> `predict()` flow. Save your trained models using `joblib` so they don't have to be retrained every time.
-
-### Step 5: The Interface (Wiring it up)
-- Implement the user interaction in `main.py`.
-- Import your trained model and provide a CLI or simple GUI for users to input data and get predictions.
-
-### Step 6: Defensive Engineering
-- Identify 3 ways a user could break your app (e.g., inputting out-of-range values, missing data for a required feature, attempting to predict before the model is trained).
-- Implement input range checks and user-friendly error messages.
-
-### Step 7: Validation
-- Create a test in `tests/` to verify your model's prediction output remains consistent for a known input.
-- Run `pytest` to verify everything works.
+### Phase 3: Interface & Validation
+- **Task 3.1: Model Persistence**
+  - Implement a `save_model(filename)` and `load_model(filename)` method using the `joblib` library.
+- **Task 3.2: The Prediction CLI**
+  - In `main.py`, allow the user to input feature values and print the model's prediction.
+- **Task 3.3: Validation**
+  - Create a test in `tests/test_pipeline.py` that verifies the `prepare_data` function returns a DataFrame with the expected number of features.
 
 ## 🚀 Going Beyond (Stretch Goals)
 - **Feature Importance Visualization:** Use Matplotlib to show which features had the biggest impact on the model's predictions.

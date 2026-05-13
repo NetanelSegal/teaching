@@ -1,0 +1,3 @@
+pytest==8.2.0
+python-dotenv==1.0.1
+# watchdog==4.0.1 (optional: for real-time folder watching)

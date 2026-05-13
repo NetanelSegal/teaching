@@ -9,7 +9,7 @@ Explore the world of artificial intelligence by building bots that interact with
 - **Environment Management:** Handling API keys and `.env` files securely.
 
 ## Core Libraries
-- `openai`: To interact with GPT models and DALL-E.
+- `google-generativeai`: To interact with Gemini 2.5 models.
 - `discord.py` / `python-telegram-bot`: For building chat-based agents.
 - `scikit-learn`: The entry point for Machine Learning (Regression, Classification).
 - `python-dotenv`: For managing secrets.
@@ -17,7 +17,7 @@ Explore the world of artificial intelligence by building bots that interact with
 ## Projects Roadmap
 
 ### Project 1: AI Chatbot with History (API Consumption)
-Create a terminal-based chatbot powered by OpenAI that remembers the conversation context.
+Create a terminal-based chatbot powered by Gemini 2.5 Flash that remembers the conversation context.
 - **Focus:** API calls, message history management, and system prompting.
 
 ### Project 2: Multi-Tool Discord Bot (Integration & Async)

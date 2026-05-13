@@ -1,7 +1,7 @@
 # Session 2: Knowledge Augmentation (RAG & Vector DBs)
 
 ## 1. The Hook (5 mins)
-You ask ChatGPT: *"What are the internal rules for employee parking at ORT's headquarters?"*
+You ask Gemini: *"What are the internal rules for employee parking at ORT's headquarters?"*
 The AI will likely apologize and say it doesn't have access to that information. 
 
 AI training data is frozen in time and doesn't include your private files. To fix this, we don't "re-train" the model; we give it a **Search Engine**.
@@ -21,7 +21,7 @@ Standard databases (MySQL/MongoDB) search for exact words. **Vector Databases** 
 
 ### Deep Dive: The Geometry of Meaning
 #### 1. What is an Embedding Dimension?
-OpenAI's `text-embedding-3-small` produces a vector with **1,536 dimensions**. This means every piece of text is mapped to a point in a 1,536-dimensional space. Each dimension represents a different semantic feature (e.g., "gender," "formality," "scientific vs. poetic").
+Gemini's `text-embedding-004` produces a vector with **768 dimensions**. This means every piece of text is mapped to a point in a 768-dimensional space. Each dimension represents a different semantic feature.
 
 #### 2. Cosine Similarity: The Math of "Nearness"
 How does Pinecone know which vectors are similar? It uses **Cosine Similarity**. 
@@ -37,7 +37,7 @@ If you have 10 million vectors, checking every one of them for a match would tak
 
 ### The Workflow
 1.  **Chunking**: Break a PDF/File into small 500-word pieces.
-2.  **Embedding**: Send each piece to OpenAI's `text-embedding-3-small` model.
+2.  **Embedding**: Send each piece to Gemini's `text-embedding-004` model.
 3.  **Upsert**: Save the resulting vectors into Pinecone.
 
 ## 3. The Lab (90 mins)
@@ -46,15 +46,15 @@ If you have 10 million vectors, checking every one of them for a match would tak
 **Task:** "Chat with Your Knowledge Base".
 1. Setup a Pinecone Index.
 2. Create a script to "ingest" a text file into vectors.
-3. Build an Express route that takes a question, embeds it, retrieves the top 3 matches from Pinecone, and generates an answer using GPT-4o.
+3. Build an Express route that takes a question, embeds it, retrieves the top 3 matches from Pinecone, and generates an answer using Gemini 2.5 Flash.
 
 ---
 ## Technical Reference
 ```javascript
 // Embedding Example
-const embedding = await openai.embeddings.create({
-  model: "text-embedding-3-small",
-  input: "The parking rules state that...",
+const embedding = await ai.models.embedContent({
+  model: "text-embedding-004",
+  contents: [{ parts: [{ text: "The parking rules state that..." }] }],
 });
 // result: [0.0023, -0.012, 0.543, ...]
 ```

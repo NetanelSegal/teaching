@@ -1,6 +1,6 @@
+import "dotenv/config";
 import { GoogleGenAI } from "@google/genai";
 import { tools, getUserInfo } from "./tools.js";
-import "dotenv/config";
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
@@ -10,28 +10,29 @@ export async function runAgent(userInput) {
   ];
 
   const response = await ai.models.generateContent({
-    model: "gemini-3-flash-preview",
+    model: "gemini-2.5-flash",
     contents: messages,
     config: {
+      systemInstruction: "You are a database assistant. Use the available tools to fetch user information when asked. If a user asks about an email, call getUserInfo.",
       tools: tools,
     },
   });
 
   const candidate = response.candidates[0];
+  console.log("🤖 Model Response Parts:", JSON.stringify(candidate.content.parts, null, 2));
   
-  if (candidate.content.parts.some(p => p.call)) {
-    // Note: The new SDK handling of tool calls might be simplified or automated
-    // In May 2026, the SDK often handles the callback loop if configured, 
-    // but here we show the manual logic for pedagogical clarity.
-    const toolCall = candidate.content.parts.find(p => p.call);
-    const result = getUserInfo(toolCall.call.args);
+  // Checking for Gemini tool call format
+  const toolCallPart = candidate.content.parts.find(p => p.functionCall);
+  if (toolCallPart) {
+    const toolCall = toolCallPart.functionCall;
+    const result = getUserInfo(toolCall.args);
 
     const finalResponse = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
+      model: "gemini-2.5-flash",
       contents: [
         ...messages,
         candidate.content,
-        { role: "tool", parts: [{ response: { name: toolCall.call.name, content: result } }] }
+        { role: "tool", parts: [{ functionResponse: { name: toolCall.name, response: result } }] }
       ],
     });
 

@@ -1,16 +1,13 @@
-import OpenAI from "openai";
 import "dotenv/config";
+import { GoogleGenAI } from "@google/genai";
 
-const openai = new OpenAI();
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
-export async function categorizeMerchant(merchantName) {
-  const response = await openai.chat.completions.create({
-    model: "gpt-4o-mini",
-    messages: [
-      { role: "system", content: "You are a helpful accountant. Categorize the merchant into: Food, Travel, Office, or Other." },
-      { role: "user", content: `Categorize this merchant: ${merchantName}` }
-    ],
+export async function categorizeMerchant(name) {
+  const response = await ai.models.generateContent({
+    model: "gemini-2.5-flash",
+    contents: `Categorize this merchant: ${name}. Options: Food, Travel, Office, Other. Return only the category name.`,
   });
 
-  return response.choices[0].message.content;
+  return response.text;
 }

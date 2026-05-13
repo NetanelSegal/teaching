@@ -1,6 +1,6 @@
+import "dotenv/config";
 import express from "express";
 import { GoogleGenAI } from "@google/genai";
-import "dotenv/config";
 
 const app = express();
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
@@ -11,8 +11,20 @@ app.get("/stream", async (req, res) => {
   res.setHeader('Connection', 'keep-alive');
 
   const stream = await ai.models.generateContentStream({
-    model: "gemini-3-flash-preview",
+    model: "gemini-2.5-flash",
     contents: "Write a long story about a robot.",
+    config: {
+      safetySettings: [
+        {
+          category: "HARM_CATEGORY_HARASSMENT",
+          threshold: "BLOCK_MEDIUM_AND_ABOVE",
+        },
+        {
+          category: "HARM_CATEGORY_HATE_SPEECH",
+          threshold: "BLOCK_ONLY_HIGH",
+        }
+      ]
+    }
   });
 
   for await (const chunk of stream) {

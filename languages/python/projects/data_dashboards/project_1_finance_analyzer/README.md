@@ -3,40 +3,49 @@
 ## 🌟 The Challenge
 Real-world data is messy. Build a tool that takes a chaotic bank export (CSV) with missing values, duplicates, and inconsistent formats, and transforms it into a clean, structured dataset. You'll use Pandas and NumPy to automate the tedious work of data cleaning and perform initial financial analysis.
 
-## 🗺️ Step-by-Step Learning Path
+## 🧠 Program Logic Flow
+1.  **Load**: Read the raw, "dirty" CSV file into a Pandas DataFrame.
+2.  **Validate**: Check for required columns and report missing data.
+3.  **Clean**: 
+    -   Identify and remove duplicate entries.
+    -   Cast the 'Amount' column to numeric, forcing errors to `NaN`.
+    -   Standardize the 'Date' column to a consistent format.
+    -   Fill missing categorical values (e.g., set empty 'Category' to 'Uncategorized').
+4.  **Analyze**: Use NumPy to calculate global statistics (Total, Mean, Max spend).
+5.  **Export**: Save the cleaned DataFrame to a new CSV for downstream use in Project 2.
 
-### Step 1: Research & Discovery
-- **Concept Focus:** Data Cleaning, Vectorized Operations, CSV Manipulation.
-- **Internal Reference:** [Lesson 23: NumPy](../../lessons/23-NumPy_and_Numerical_Computing/), [Lesson 24: Pandas](../../lessons/24-Pandas_and_Data_Analysis/)
-- **External Docs:** [Pandas Documentation](https://pandas.pydata.org/docs/), [NumPy Documentation](https://numpy.org/doc/)
+## 🛠️ Implementation Tasks
 
-### Step 2: Environment & Scaffolding
-1. Create a virtual environment: `python -m venv .venv`
-2. Activate it and install dependencies: `pip install -r ../../../requirements.txt`
-3. Ensure your structure follows the ORT standard:
-   - `src/core.py` (Logic)
-   - `src/utils.py` (Helpers)
-   - `main.py` (Entry Point)
+### Phase 1: Setup & Scaffolding
+- **Task 1.1: Environment Isolation**
+  - Create a virtual environment: `python -m venv .venv`.
+  - Activate it and install the local dependencies: `pip install -r requirements.txt`.
+- **Task 1.2: Directory Structure**
+  - Ensure your project follows the structure:
+    - `src/core.py` (Data cleaning and aggregation logic)
+    - `src/utils.py` (CSV reading/writing helpers)
+    - `main.py` (The CLI interface)
+    - `tests/` (Your validation scripts)
 
-### Step 3: Designing the Data Model
-- Define how your data looks. (e.g., "What columns should the final cleaned CSV have? Date, Category, Amount, Description.")
-- Implement these as a schema definition or a list of expected columns in `src/core.py`.
+### Phase 2: Core Logic (The Brains)
+- **Task 2.1: The Cleaning Pipeline**
+  - In `src/core.py`, implement a function `clean_data(df)`.
+  - It should:
+    1. Drop duplicate rows (`df.drop_duplicates()`).
+    2. Fill missing values in the 'Category' column with "Other" (`df.fillna()`).
+    3. Ensure 'Amount' is a float and 'Date' is a datetime object.
+  - *Engineering Standard:* Return a copy of the DataFrame, don't modify the input in-place.
+- **Task 2.2: Statistical Summary**
+  - Implement a function `get_summary_stats(df)`.
+  - Use NumPy to calculate the total spend, average transaction size, and standard deviation.
 
-### Step 4: Building the "Brains" (Core Logic)
-- Implement the primary functionality in `src/core.py`.
-- **Engineering Standard:** Keep functions "pure." Your cleaning functions should take a raw DataFrame and return a clean one without modifying the original.
-
-### Step 5: The Interface (Wiring it up)
-- Implement the user interaction in `main.py`.
-- Import your logic from `src.core`, load the messy CSV, run the cleaning pipeline, and save the result.
-
-### Step 6: Defensive Engineering
-- Identify 3 ways a user could break your app (e.g., CSV has different headers than expected, numeric columns contain text, the file is empty).
-- Implement `try/except` blocks and Pandas validation checks.
-
-### Step 7: Validation
-- Create a test in `tests/` that passes a small "broken" dataset and verifies the output matches your cleaning rules.
-- Run `pytest` to verify everything works.
+### Phase 3: Interface & Validation
+- **Task 3.1: The CSV Loader**
+  - In `main.py`, implement the logic to load a CSV file provided via a command-line argument.
+- **Task 3.2: Export Clean Data**
+  - After cleaning, save the final DataFrame to `data/cleaned_finance.csv`.
+- **Task 3.3: Validation**
+  - Create a test in `tests/test_cleaning.py` that passes a DataFrame with known issues (duplicates, NaNs) and asserts that they are fixed.
 
 ## 🚀 Going Beyond (Stretch Goals)
 - **Auto-Categorization:** Use keyword matching or fuzzy logic to automatically assign categories (e.g., "Amazon" -> "Shopping").

@@ -8,5 +8,5 @@ export const RecipeSchema = z.object({
   instructions: z.array(z.string()),
   nutritionalInfo: z.object({
     calories: z.number()
-  }).optional()
+  }).nullable().optional()
 });

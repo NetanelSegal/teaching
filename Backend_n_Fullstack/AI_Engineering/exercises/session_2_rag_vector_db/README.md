@@ -1,37 +1,46 @@
 # Lab 2: Chat with Your Knowledge Base
 
 ## Objective
-Implement a RAG (Retrieval-Augmented Generation) system using OpenAI embeddings and Pinecone vector database.
+Implement a RAG (Retrieval-Augmented Generation) system using Gemini embeddings and Pinecone vector database.
 
 ## Project Structure
 - `starter/`: Your workspace.
 - `solution/`: Reference implementation.
 
-## Tasks
+## 🧠 Program Logic Flow
+### Ingestion (Data Prep)
+1.  **Chunk**: Break the `knowledge.txt` file into smaller, overlapping text chunks.
+2.  **Embed**: Send each chunk to the Gemini Embedding API (`text-embedding-004`) to get its numeric vector representation.
+3.  **Upsert**: Store the vectors and their corresponding text (metadata) into the Pinecone index.
 
-### 1. Pinecone Setup
-- Create a free account on Pinecone.io.
-- Create a new index with 1536 dimensions (for OpenAI embeddings) and use "Cosine" similarity.
+### Retrieval (Querying)
+1.  **Search**: The user asks a question. The question is embedded.
+2.  **Context Fetch**: Query Pinecone for the top 3 vectors closest to the question's vector.
+3.  **Prompt Injection**: Combine the user's question with the retrieved text chunks as context.
+4.  **Augmented Generation**: Send the augmented prompt to Gemini 2.5 Flash to get an answer grounded in your data.
 
-### 2. Ingestion Script (ingest.js)
-- Read a local text file (e.g., `knowledge.txt`).
-- Break the text into chunks.
-- Generate embeddings for each chunk using OpenAI's `text-embedding-3-small`.
-- Upsert the vectors into your Pinecone index.
+## 🛠️ Implementation Tasks
 
-### 3. RAG Logic (query.js)
-- Create a function that:
-    1. Takes a user question.
-    2. Embeds the question.
-    3. Queries Pinecone for the top 3 most relevant matches.
-    4. Constructs a prompt: "Use the following context to answer the question: [Context] \n Question: [Question]".
-    5. Calls GPT-4o to get the final answer.
+### Phase 1: Setup & Scaffolding
+- **Task 1.1: Pinecone Provisioning**
+  - Create an index in Pinecone (768 dims, Cosine similarity).
+- **Task 1.2: Dependencies**
+  - Initialize the project and install: `@google/genai`, `@pinecone-database/pinecone`, `dotenv`.
 
-### 4. API Layer (index.js)
-- Create an Express route `POST /ask`.
-- Return the AI's response based on your private knowledge base.
+### Phase 2: The Ingestion Pipeline
+- **Task 2.1: Ingestion Script (`ingest.js`)**
+  - Read `knowledge.txt`.
+  - Implement a chunking strategy.
+  - Generate embeddings for each chunk using `text-embedding-004`.
+  - Upsert to Pinecone.
 
----
+### Phase 3: The RAG Engine
+- **Task 3.1: Querying Logic (`query.js`)**
+  - Implement the `askQuestion(query)` function.
+  - Logic: Embed query -> Query Pinecone -> Construct Prompt -> Call Gemini 2.5 Flash.
+- **Task 3.2: The API Layer (`index.js`)**
+  - Implement `POST /ask`.
+  - Return the AI's grounded response.
 
-## Challenge
+## 🚀 Challenge
 Implement "Chunk Metadata": Store the original text and the source filename inside the Pinecone vector metadata, and display the source in your API response.

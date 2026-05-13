@@ -7,33 +7,45 @@ Build a Node.js API that uses Google Gemini to generate structured recipe data a
 - `starter/`: Your workspace. Follow the tasks below.
 - `solution/`: Reference implementation.
 
-## Tasks
+## 🧠 Program Logic Flow
+1.  **Request**: The client sends a "cooking goal" (e.g., "A vegan lasagna") to the Express server.
+2.  **Prompt Engineering**:
+    -   The system combines the user's goal with a **System Instruction** (Persona: Professional Chef).
+    -   The prompt specifies that the output must be **Valid JSON** matching the schema.
+3.  **AI Inference**: The Google Gemini model processes the prompt and returns a JSON string.
+4.  **Validation**:
+    -   The string is parsed into a JavaScript object.
+    -   **Zod** validates the object against `RecipeSchema`.
+    -   If valid, the data is passed to the next step; if invalid, an error is thrown.
+5.  **Response**: The server returns the structured, validated recipe to the client.
 
-### 1. Project Initialization
-- Initialize a new Node.js project.
-- Install dependencies: `@google/generative-ai`, `zod`, `express`, `dotenv`.
-- Configure the project to use ES Modules (`"type": "module"`).
+## 🛠️ Implementation Tasks
 
-### 2. Environment Setup
-- Create a `.env` file with `GEMINI_API_KEY` and `PORT`.
+### Phase 1: Setup & Scaffolding
+- **Task 1.1: Project Initialization**
+  - Run `npm init -y` inside the `starter/` directory.
+  - Set `"type": "module"` in `package.json`.
+  - Install dependencies: `npm install @google/generative-ai zod express dotenv`.
+- **Task 1.2: Environment Configuration**
+  - Create a `.env` file with your `GEMINI_API_KEY`.
+  - Create `index.js`, `schema.js`, and `recipeGenerator.js`.
 
-### 3. Data Schema (schema.js)
-- Define a Zod schema named `RecipeSchema`.
-- It must include: `name`, `timeToPrepare`, `difficulty` (enum), `ingredients` (array), and `instructions` (array).
+### Phase 2: Schema & AI Logic
+- **Task 2.1: The Data Contract (schema.js)**
+  - Define `RecipeSchema` using Zod.
+  - Ensure it includes `name`, `timeToPrepare`, `difficulty` (enum), `ingredients`, and `instructions`.
+- **Task 2.2: The AI Engine (recipeGenerator.js)**
+  - Initialize the `GoogleGenerativeAI` client.
+  - Implement `generateRecipe(goal)` using `model.generateContent()`.
+  - Set `responseMimeType: "application/json"` in the generation config.
+  - Use `RecipeSchema.parse()` to validate the result before returning it.
 
-### 4. AI Logic (recipeGenerator.js)
-- Initialize the Google Gemini client.
-- Create a function `generateRecipe(goal)`.
-- Use a **System Instruction** to define the AI's persona as a "Professional Chef".
-- Configure the model to output **valid JSON** (`responseMimeType: "application/json"`).
-- Validate the AI response against your Zod schema.
+### Phase 3: The API Layer (index.js)
+- **Task 3.1: Server Setup**
+  - Initialize an Express app with `express.json()` middleware.
+- **Task 3.2: The Endpoint**
+  - Create `POST /generate-recipe`.
+  - Call `generateRecipe()` and handle potential AI or validation errors with a `try/catch` block.
 
-### 5. API Layer (index.js)
-- Create an Express server.
-- Implement a `POST /generate-recipe` route that accepts a `goal`.
-- Handle errors gracefully and return the validated recipe.
-
----
-
-## Challenge
+## 🚀 Challenge
 Add a `nutritionalInfo` object to the schema and update the AI instructions to provide calorie counts.
