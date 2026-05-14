@@ -15,12 +15,12 @@ const users = [
 /**
  * MISSION 1: Basic Render
  * 1. Select the #user-list container.
- * 2. Create a function 'render(data)' that:
+ * 2. Create a function 'render(users)' that:
  *    - Clears the container using .replaceChildren().
- *    - Uses .map() and .innerHTML to render each user as:
+ *    - Uses .forEach() and .innerHTML to render each user as:
  *      <div class="list-item">
  *          <span>${user.name}</span>
- *          <span class="badge">${user.role}</span>dont
+ *          <span class="badge">${user.role}</span>
  *      </div>
  */
 // TODO: Your code here
