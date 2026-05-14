@@ -2,32 +2,37 @@
 
 This folder contains practical JavaScript exercises covering everything from basic syntax to advanced asynchronous patterns and DOM manipulation.
 
-## 1. ES6+ Features
-- **Destructuring**: Practice extracting values from objects and arrays into individual variables.
-- **Spread & Rest**: Use `...` to clone objects, merge arrays, and handle variable function arguments.
-- **Arrow Functions**: Implement concise function syntax for callbacks and utility methods.
+## Core Exercises
+00. **Variables & Data Types**: Fundamentals of storage and operators.
+01. **Algorithms**: Mathematical logic and problem solving.
+02. **Objects Basics**: Working with structured data.
+03. **DOM Styling**: Manipulating CSS through JavaScript.
+04. **Interaction**: Basic click events and alerts.
+05. **Logic Control**: If/Else and Switch statements.
+06. **Loops**: For, While, and For...of iterations.
+07. **Strings**: Manipulation and template literals.
+08. **Arrays**: Fundamental list operations.
+09. **DOM Dynamic Rendering**: Rendering data arrays to the UI (Single Source of Truth).
+10. **DOM Modal**: Building interactive popups.
+11. **DOM Range Slider**: Real-time input handling.
+12. **Timers & Clock**: Asynchronous execution with `setInterval`.
+13. **Async Basics**: Introduction to the event loop.
+14. **Promises**: Handling future values.
+15. **Fetch & Timeout**: Working with external APIs.
+16. **API Countries**: Data fetching and rendering.
+17. **Ecom Basket**: Intermediate state management.
+18. **Ecom Advanced**: Complex logic and UI state.
+19. **OOP Library**: Object-oriented programming principles.
+20. **Project: Guitar Hero**: Logic and event-driven interaction.
+21. **Functions & Callbacks**: High-order functions and functional patterns.
 
-## 2. DOM and Event Handling
-- **Interactive UI**:
-  - Create a button that changes the `body` background color to a random hex value.
-  - Implement a counter button that increments its label on every click.
-- **Form Management**:
-  - Build a form that takes user details (Name, Age, Preferences) and dynamically generates a "User Card" in the UI upon submission.
-  - Use `e.preventDefault()` to handle form logic without page reloads.
+## 🏆 Capstone Projects
+22. **Smart Task Dashboard**: A full CRUD application using Data-Driven Rendering, Event Delegation, and Form Handling. 
 
-## 3. Data Persistence & CRUD
-- **Product Manager (`localStorage`)**:
-  - Build a task/product list where items can be Added, Deleted, and Marked as "Completed".
-  - Use `JSON.stringify()` and `JSON.parse()` to persist the list in `localStorage` so it survives page refreshes.
+---
 
-## 4. Asynchronous JS & APIs
-- **Timers**: Master `setTimeout` and `setInterval` for delayed execution and recurring tasks.
-- **Fetch & Axios**:
-  - Fetch user or post data from `jsonplaceholder.typicode.com`.
-  - Implement full CRUD operations (GET, POST, PUT, DELETE) using a mock API (e.g., `api.restful-api.dev`).
-  - Use `async/await` with `try/catch` blocks for clean error handling.
-
-## 5. Projects
-- **Mini-Games & Tools**: `guitar-hero`, `dog-page-with-modal`, `range-slider`.
-- **Logic**: Prime number generators, "7 Boom" game, and strong password validators using Promises.
-- **Algorithms**: Mathematical foundations including averages, tax calculations, and unit conversions.
+## 💡 How to Practice
+1. **Understand the Goal**: Read the `README.md` or comments in each folder.
+2. **Start Small**: Use the `starter/` code if provided.
+3. **Check the Solution**: Only peek at the `solution/` directory after you've attempted the logic yourself.
+4. **Refactor**: Try to make your code more concise using modern ES6+ features (Arrow functions, map/filter/reduce, destructuring).

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 09: Dynamic List Rendering</title>
+    <style>
+        body { font-family: system-ui; padding: 2rem; background: #f0f2f5; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .controls { display: flex; gap: 10px; margin-bottom: 20px; }
+        input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 6px; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 6px; cursor: pointer; }
+        button.secondary { background: #6c757d; }
+        .list-item { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid #eee; }
+        .list-item:last-child { border-bottom: none; }
+        .badge { padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; background: #e9ecef; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>User Directory</h1>
+        <div class="controls">
+            <input type="text" id="search-input" placeholder="Search by name...">
+            <button id="sort-btn" class="secondary">Sort A-Z</button>
+        </div>
+        <div id="user-list">
+            <!-- Render here -->
+        </div>
+    </div>
+    <script type="module" src="exercises.js"></script>
+</body>
+</html>
