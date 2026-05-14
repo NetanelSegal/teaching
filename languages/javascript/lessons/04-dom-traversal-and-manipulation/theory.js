@@ -10,14 +10,14 @@ newDiv.className = 'card';
 newDiv.textContent = 'I am a new card!';
 newDiv.style.border = '1px solid black';
 
-// 2. Creation - Method B: insertAdjacentHTML (Template Literals)
+// 2. Creation - Method B: innerHTML (Template Literals)
 const htmlSnippet = `
     <article class="product" data-id="p1">
         <h3>Product Title</h3>
         <p>Description goes here.</p>
     </article>
 `;
-container.insertAdjacentHTML('beforeend', htmlSnippet);
+container.innerHTML += htmlSnippet; // Adds to the existing HTML
 
 // 3. Injection Methods
 container.append(newDiv); // Add at the end

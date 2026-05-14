@@ -1,10 +1,16 @@
-# Lesson 6: Forms & Input Events 📝
+# Lesson 7: Forms & Input Events 📝
 
 ## Goal
 Master the interaction between JavaScript and HTML forms. Learn how to capture user input, perform live validation, and handle submissions using modern APIs.
 
 ## Hook 🪝
 Forms are the primary way users communicate with your application—whether they're signing up, searching for a product, or writing a post. But raw HTML forms are "dumb"; they just refresh the page. By adding JavaScript, you can create "smart" forms that give instant feedback (like a password strength meter) and send data behind the scenes without ever refreshing the page.
+
+## Real-World Scenario: The Sign-Up Form 📝
+When you sign up for a new app, you see a "smart" form in action:
+1. As you type your password, it turns green (Live Validation using `input` event).
+2. When you click "Register", the page doesn't refresh (`e.preventDefault()`).
+3. Instead, your data is gathered into a clean object (`FormData`), and you are logged in instantly.
 
 ## Theory 📚
 

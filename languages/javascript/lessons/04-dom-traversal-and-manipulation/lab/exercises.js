@@ -15,7 +15,7 @@ const fruits = ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry'];
 
 // MISSION 2: User Profiles (Template Literals) 👤
 // 1. Select the #user-container and #generate-user-btn.
-// 2. When clicked, use insertAdjacentHTML to inject a card with this structure:
+// 2. When clicked, use innerHTML (+=) to inject a card with this structure:
 /*
     <div class="user-card">
         <h3>User: John Doe</h3>

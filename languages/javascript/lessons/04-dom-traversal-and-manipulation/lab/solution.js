@@ -26,7 +26,7 @@ genUserBtn.addEventListener('click', () => {
             <p>Role: Developer</p>
         </div>
     `;
-    userContainer.insertAdjacentHTML('beforeend', html);
+    userContainer.innerHTML += html;
 });
 
 

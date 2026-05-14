@@ -1,10 +1,16 @@
-# Lesson 5: Events Deep Dive ⚡
+# Lesson 6: Events Deep Dive ⚡
 
 ## Goal
 Master high-performance event handling, understand the event lifecycle (Bubbling/Capturing), and learn how to manage complex user interactions like forms.
 
 ## Hook 🪝
 Imagine you have a list with 1,000 items, and each item needs a "Delete" button. If you add 1,000 event listeners, your app will crawl. Professional developers don't do that—they use **Event Delegation**. They add *one* listener to the parent and let the events bubble up. Learning how events "travel" through your HTML is the secret to building fast, scalable web apps.
+
+## Real-World Scenario: The Infinite Scroll ♾️
+When you scroll through TikTok or YouTube, new videos are constantly added to the page. If you added an event listener to every single video, your phone would overheat! Instead, developers use **Event Delegation**:
+1. They add **one** listener to the main "Feed" container.
+2. When you click *any* video, the event bubbles up to the Feed.
+3. The Feed checks which video you clicked and plays it.
 
 ## Theory 📚
 
