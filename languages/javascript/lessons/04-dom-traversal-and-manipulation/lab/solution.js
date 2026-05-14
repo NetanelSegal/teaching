@@ -2,6 +2,30 @@
  * Lab: Traversal & Manipulation - Solutions
  */
 
+// MISSION 0: Profile Editor (Manipulating Existing) 🛠️
+const profileName = document.getElementById('profile-name');
+const profileStatus = document.getElementById('profile-status');
+const updateProfileBtn = document.getElementById('update-profile-btn');
+const toggleThemeBtn = document.getElementById('toggle-theme-btn');
+const profileCard = document.getElementById('profile-card');
+
+updateProfileBtn.addEventListener('click', () => {
+    profileName.textContent = 'Gemini CLI';
+    profileStatus.textContent = 'Status: Online';
+    profileStatus.style.color = 'green';
+});
+
+toggleThemeBtn.addEventListener('click', () => {
+    if (profileCard.style.backgroundColor === 'black') {
+        profileCard.style.backgroundColor = 'white';
+        profileCard.style.color = 'black';
+    } else {
+        profileCard.style.backgroundColor = 'black';
+        profileCard.style.color = 'white';
+    }
+});
+
+
 // MISSION 1: Dynamic Fruit List 🍎
 const fruitList = document.getElementById('fruit-list');
 const addFruitBtn = document.getElementById('add-fruit-btn');

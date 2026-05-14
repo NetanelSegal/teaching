@@ -20,18 +20,24 @@ The DOM is a tree. Sometimes you have an element (like a "Delete" button) and yo
 - **Children**: `element.children` (returns a live HTMLCollection).
 - **Siblings**: `element.nextElementSibling`, `element.previousElementSibling`.
 
-### 2. Creating "DOM Stuff"
+### 2. Updating Existing Elements
+Before creating new elements, we often modify existing ones:
+- **Text**: `element.textContent = "New Text"` (Secure).
+- **Styles**: `element.style.color = "red"` (Inline styles).
+- **Classes**: `element.classList.add('active')` (Best practice).
+
+### 3. Creating "DOM Stuff"
 There are two main ways to create new elements:
 - **`document.createElement(tagName)`**: The "clean" programmatic way. Highly secure and allows for fine-grained control.
 - **`element.innerHTML`**: The "fast" way. Great for injecting large chunks of HTML. You can use `+=` to add content without deleting what's already there.
 
-### 3. Injecting Elements
+### 4. Injecting Elements
 Once created, you must "attach" the element to the tree:
 - **`append()`**: Adds to the end of the parent.
 - **`prepend()`**: Adds to the beginning of the parent.
 - **`before()` / `after()`**: Adds as a sibling to the current element.
 
-### 4. Data Attributes (`dataset`)
+### 5. Data Attributes (`dataset`)
 Store extra information directly on HTML elements using `data-*` attributes.
 ```html
 <div class="user" data-id="123" data-role="admin"></div>

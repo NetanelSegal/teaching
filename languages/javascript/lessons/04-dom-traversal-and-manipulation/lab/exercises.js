@@ -3,6 +3,18 @@
  * Refer to index.html for the structure.
  */
 
+// MISSION 0: Profile Editor (Manipulating Existing) 🛠️
+// 1. Select the #profile-name, #profile-status, and the #update-profile-btn.
+// 2. When #update-profile-btn is clicked:
+//    - Change the text of #profile-name to your own name.
+//    - Change the text of #profile-status to "Status: Online".
+//    - Change the color of the #profile-status element to "green".
+// 3. Select #toggle-theme-btn and #profile-card.
+// 4. When #toggle-theme-btn is clicked:
+//    - Toggle a background color style or a class on #profile-card.
+// TODO: your code here
+
+
 // MISSION 1: Dynamic Fruit List 🍎
 // 1. Select the <ul> (#fruit-list) and the button (#add-fruit-btn).
 // 2. When the button is clicked:
