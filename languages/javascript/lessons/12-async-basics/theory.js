@@ -1,39 +1,69 @@
 /**
- * Theory: Async Basics
+ * Theory: Async Basics & The Event Loop
  * 
  * Asynchronous code allows JS to perform tasks without stopping the main program.
  */
 
-// 1. setTimeout - Running code after a delay
-console.log("Start");
+// 1. Synchronous vs Asynchronous
+console.log("--- 1. Order of Execution ---");
+console.log("Step 1: Synchronous");
 
 setTimeout(() => {
-    console.log("2 seconds have passed!");
-}, 2000);
+    console.log("Step 2: Asynchronous (Timed out)");
+}, 0); // Even with 0ms, it goes to the Callback Queue!
 
-console.log("End"); 
-// Output: Start -> End -> 2 seconds have passed!
+console.log("Step 3: Synchronous");
+// Output: 1 -> 3 -> 2
 
-// 2. setInterval - Running code repeatedly
+
+// 2. Blocking the Thread (The Problem)
+console.log("\n--- 2. Blocking Example ---");
+function heavyTask() {
+    console.log("Starting heavy task...");
+    const start = Date.now();
+    while (Date.now() - start < 2000) {
+        // Blocks for 2 seconds
+    }
+    console.log("Heavy task finished!");
+}
+
+// If you uncomment this, notice that Step 2 (above) waits for this to finish!
+// heavyTask(); 
+
+
+// 3. Timers (Intervals)
+console.log("\n--- 3. Intervals ---");
 let count = 0;
 const intervalId = setInterval(() => {
     count++;
-    console.log(`Interval count: ${count}`);
+    console.log(`Blink ${count}`);
     
-    if (count === 5) {
-        clearInterval(intervalId); // Stops the interval
-        console.log("Interval stopped.");
+    if (count === 3) {
+        clearInterval(intervalId);
+        console.log("Blinking stopped.");
     }
-}, 1000);
+}, 500);
 
-// 3. Simple Callbacks (The old way of handling async)
-function processData(callback) {
-    console.log("Processing...");
+
+// 4. Callback Hell (The Motivation)
+console.log("\n--- 4. Callback Hell ---");
+function stepOne(callback) {
     setTimeout(() => {
-        callback("Data Ready!");
-    }, 1500);
+        console.log("Step One Done");
+        callback();
+    }, 1000);
 }
 
-processData((message) => {
-    console.log(message);
+function stepTwo(callback) {
+    setTimeout(() => {
+        console.log("Step Two Done");
+        callback();
+    }, 1000);
+}
+
+// Pyramid of Doom
+stepOne(() => {
+    stepTwo(() => {
+        console.log("Final Step Done");
+    });
 });

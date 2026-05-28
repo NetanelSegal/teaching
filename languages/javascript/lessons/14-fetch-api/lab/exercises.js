@@ -1,23 +1,30 @@
 /**
- * Lab: Fetch Exercises
+ * Lab: Fetch API & Networking
  */
 
-// Exercise 1: Get a Random User
-// Fetch a random user from: 'https://randomuser.me/api/'
-// Log the user's full name to the console.
+// Exercise 1: Basic Data Fetching
+// 1. Fetch a list of users from: 'https://jsonplaceholder.typicode.com/users'
+// 2. Loop through the array and print each user's name and email.
 // TODO: your code here
 
-// Exercise 2: Display Data in DOM
-// Fetch a random activity from: 'https://www.boredapi.com/api/activity' (or any other public API)
-// Display the activity text inside an <h1> on your page.
+
+// Exercise 2: Robust Error Handling (The 404 Case)
+// 1. Try to fetch from: 'https://jsonplaceholder.typicode.com/invalid-route'
+// 2. Inside the first .then(), check if response.ok is false.
+// 3. If false, throw a new Error with the message "Page not found!".
+// 4. Catch the error and log it to the console.
 // TODO: your code here
 
-// Exercise 3: Async/Await practice
-// Rewrite the following fetch call using async/await:
-// fetch('https://api.github.com/users/octocat').then(res => res.json()).then(data => console.log(data));
+
+// Exercise 3: Post a New Comment
+// 1. Send a POST request to: 'https://jsonplaceholder.typicode.com/comments'
+// 2. The body should be a JSON object with: name, email, and body.
+// 3. Set the correct 'Content-Type' header.
+// 4. Print the server's response to verify the "creation".
 // TODO: your code here
 
-// Exercise 4: Error Handling
-// Try to fetch from a broken URL (e.g., 'https://this-is-not-a-real-url.xyz')
-// Use a try/catch block to log a custom error message like "Oops, something went wrong!"
+
+// Exercise 4: Real-World Data (Optional Challenge)
+// 1. Fetch data from a public API of your choice (e.g., Dog API, Cat Facts, or Pokemon).
+// 2. Display the result in a simple HTML list or card on your page.
 // TODO: your code here

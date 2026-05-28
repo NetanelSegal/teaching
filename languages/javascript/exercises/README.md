@@ -2,29 +2,36 @@
 
 This folder contains practical JavaScript exercises covering everything from basic syntax to advanced asynchronous patterns and DOM manipulation.
 
-## Core Exercises
-00. **Variables & Data Types**: Fundamentals of storage and operators.
-01. **Algorithms**: Mathematical logic and problem solving.
-02. **Objects Basics**: Working with structured data.
+## Core Fundamentals (Module 00)
+00-01. **Variables & Data Types**: Fundamentals of storage and operators.
+00-02b. **Strings**: Manipulation and template literals.
+00-03. **Algorithms**: Mathematical logic and problem solving.
+00-04. **Interaction**: Basic click events and alerts.
+00-05. **Logic Control**: If/Else and Switch statements.
+00-06. **Loops**: For, While, and For...of iterations.
+00-07. **Functions & Callbacks**: High-order functions and functional patterns.
+00-08. **Objects Basics**: Working with structured data.
+00-10. **Arrays**: Fundamental list operations.
+
+## JavaScript Modules (Module 03+)
 03. **DOM Styling**: Manipulating CSS through JavaScript.
-04. **Interaction**: Basic click events and alerts.
-05. **Logic Control**: If/Else and Switch statements.
-06. **Loops**: For, While, and For...of iterations.
-07. **Strings**: Manipulation and template literals.
-08. **Arrays**: Fundamental list operations.
-09. **DOM Dynamic Rendering**: Rendering data arrays to the UI (Single Source of Truth).
-10. **DOM Modal**: Building interactive popups.
-11. **DOM Range Slider**: Real-time input handling.
-12. **Timers & Clock**: Asynchronous execution with `setInterval`.
-13. **Async Basics**: Introduction to the event loop.
-14. **Promises**: Handling future values.
-15. **Fetch & Timeout**: Working with external APIs.
-16. **API Countries**: Data fetching and rendering.
-17. **Ecom Basket**: Intermediate state management.
-18. **Ecom Advanced**: Complex logic and UI state.
-19. **OOP Library**: Object-oriented programming principles.
-20. **Project: Guitar Hero**: Logic and event-driven interaction.
-21. **Functions & Callbacks**: High-order functions and functional patterns.
+05. **DOM Dynamic Rendering**: Rendering data arrays to the UI (Single Source of Truth).
+06. **Events & Interaction**:
+    - **DOM Modal**: Building interactive popups.
+    - **Stars Rating**: Interactive UI components.
+    - **Project: Guitar Hero**: Logic and event-driven interaction.
+07. **DOM Range Slider**: Real-time input handling.
+12. **Asynchronous JS**:
+    - **Timers & Clock**: Asynchronous execution with `setInterval`.
+    - **Async Basics**: Introduction to the event loop.
+13. **Promises**: Handling future values.
+14. **Fetch & API**:
+    - **Fetch & Timeout**: Working with external APIs.
+    - **API Countries**: Data fetching and rendering.
+15. **Ecommerce Logic**:
+    - **Ecom Basket**: Intermediate state management.
+    - **Ecom Advanced**: Complex logic and UI state.
+18. **OOP Library**: Object-oriented programming principles.
 
 ## 🏆 Capstone Projects
 22. **Smart Task Dashboard**: A full CRUD application using Data-Driven Rendering, Event Delegation, and Form Handling. 
