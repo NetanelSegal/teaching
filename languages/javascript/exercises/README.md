@@ -23,6 +23,7 @@ This folder contains practical JavaScript exercises covering everything from bas
 07. **DOM Range Slider**: Real-time input handling.
 12. **Asynchronous JS**:
     - **Timers & Clock**: Asynchronous execution with `setInterval`.
+    - **Pomodoro Timer**: State management and timers.
     - **Async Basics**: Introduction to the event loop.
 13. **Promises**: Handling future values.
 14. **Fetch & API**:

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <style>
+        :root {
+            --primary: #e74c3c;
+            --bg: #f5f5f5;
+            --text: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h1 {
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .mode-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .mode-btn {
+            background: none;
+            border: 2px solid transparent;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: #7f8c8d;
+        }
+
+        .mode-btn.active {
+            background: rgba(231, 76, 60, 0.1);
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        #timer {
+            font-size: 5rem;
+            font-weight: bold;
+            margin: 1.5rem 0;
+            color: var(--primary);
+        }
+
+        #status {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            color: #7f8c8d;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 12px 24px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.1s, background 0.2s;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        #start-pause {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        #reset {
+            background-color: #ecf0f1;
+            color: #34495e;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Pomodoro</h1>
+        <div class="mode-nav">
+            <button class="mode-btn active" data-mode="work">Work</button>
+            <button class="mode-btn" data-mode="break">Break</button>
+        </div>
+        <div id="status">Work Time</div>
+        <div id="timer">25:00</div>
+        <div class="controls">
+            <button id="start-pause">Start</button>
+            <button id="reset">Reset</button>
+        </div>
+    </div>
+
+    <script type="module" src="exercises.js"></script>
+</body>
+
+</html>
