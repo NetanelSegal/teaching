@@ -4,7 +4,7 @@
 
 // Exercise 1: Basic Data Fetching
 // 1. Fetch a list of users from: 'https://jsonplaceholder.typicode.com/users'
-// 2. Loop through the array and print each user's name and email.
+// 2. Loop through the array and print each user's name and email to the console.
 // TODO: your code here
 
 

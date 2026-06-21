@@ -29,7 +29,7 @@ const modeBtns = document.querySelectorAll('.mode-btn');
 function updateDisplay() {
     // Hint: Use Math.floor() for minutes and % for seconds.
     // Use .toString().padStart(2, '0') for consistent 2-digit formatting.
-    
+
     // YOUR CODE HERE
 }
 
@@ -62,7 +62,7 @@ function setMode(mode) {
     // 3. Update `timeLeft` to WORK_TIME or BREAK_TIME
     // 4. Update UI (status text, active button class)
     // 5. Call updateDisplay()
-    
+
     // YOUR CODE HERE
 }
 
