@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="he">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MDN Style: רספונסיביות ומדיה קווריז</title>
+  <style>
+    :root {
+      --mdn-green: #27ae60;
+      --mdn-blue: #3498db;
+      --mdn-purple: #8e44ad;
+      --bg-gray: #f4f7f6;
+      --text-dark: #2c3e50;
+      --fluid-size: clamp(1rem, 1rem + 1vw, 1.5rem);
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      direction: rtl;
+      line-height: 1.6;
+      color: var(--text-dark);
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px;
+      background-color: var(--bg-gray);
+      font-size: var(--fluid-size);
+    }
+
+    h1 {
+      border-bottom: 4px solid var(--mdn-green);
+      padding-bottom: 10px;
+    }
+
+    h2 {
+      color: var(--mdn-green);
+      margin-top: 40px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    h3 {
+      color: var(--mdn-blue);
+      margin-top: 25px;
+    }
+
+    code {
+      background: #eee;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-family: 'Consolas', monospace;
+      direction: ltr;
+      display: inline-block;
+      font-size: 0.9em;
+    }
+
+    pre {
+      background: #2c3e50;
+      color: #ecf0f1;
+      padding: 20px;
+      border-radius: 8px;
+      overflow-x: auto;
+      direction: ltr;
+      text-align: left;
+      font-size: 0.8em;
+    }
+
+    .note {
+      background: #eafaf1;
+      border-right: 6px solid var(--mdn-green);
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+
+    .unit-box {
+      background: #fdfefe;
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+
+    .demo-container {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    /* Breakpoint Demo Box */
+    .responsive-box {
+      width: 100%;
+      padding: 2rem;
+      margin: 0 auto;
+      background-color: #e74c3c;
+      /* Default: Mobile (Red) */
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .responsive-box::after {
+      content: "📱 מצב מובייל (Mobile)";
+    }
+
+
+    /* Tablet Breakpoint (768px / 48em) */
+    @media screen and (min-width: 48em) {
+      .responsive-box {
+        background-color: #f1c40f;
+        color: #2c3e50;
+        transform: scale(1.05);
+      }
+
+      .responsive-box::after {
+        content: "  tablet מצב טאבלט (Tablet)";
+      }
+    }
+
+    /* Desktop Breakpoint (1024px / 64em) */
+    @media screen and (min-width: 64em) {
+      .responsive-box {
+        background-color: #2ecc71;
+        color: white;
+        transform: scale(1.1);
+      }
+
+      .responsive-box::after {
+        content: "💻 מצב דסקטופ (Desktop)";
+      }
+    }
+
+    .btn-back {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 10px 20px;
+      background: var(--text-dark);
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>שימוש במדיה קווריז (Using Media Queries)</h1>
+
+  <p><strong>מדיה קווריז</strong> (Media Queries) הם תכונה של CSS המאפשרת להתאים את תוכן הדף למאפייני המכשיר. זהו הבסיס
+    ל<strong>עיצוב רספונסיבי</strong>.</p>
+
+  <div class="note">
+    <strong>Mobile First:</strong> אסטרטגיה מומלצת שבה מעצבים קודם כל עבור מסכים קטנים ומוסיפים שיפורים למסכים גדולים
+    יותר באמצעות <code>min-width</code>.
+  </div>
+
+  <h2>למה להשתמש ב-rem? (px vs rem)</h2>
+  <p>השימוש ב-<code>rem</code> מאפשר ליצור עיצוב <strong>יחסי</strong>. המטרה היא שכל ה-UI (טקסט, ריווחים, ואפילו תיבות)
+    "ינשום" ויגדל יחד עם העדפות המשתמש.</p>
+
+  <div class="warning">
+    <strong>שימו לב להבדל:</strong>
+    <ul>
+      <li><strong>Browser Zoom (Ctrl +):</strong> מגדיל את כל המסך (גם פיקסלים וגם rem). במצב זה לא תראו הבדל בין
+        התיבות.</li>
+      <li><strong>Browser Font Settings:</strong> הגדרה עמוקה בדפדפן (למשל בכרום: Settings -> Appearance -> Font size).
+        הגדרה זו משנה <strong>רק</strong> יחידות יחסיות כמו <code>rem</code>.</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>הניסוי המנצח:</strong> שנו את גודל הפונט בהגדרות הדפדפן ל-"Very Large". התיבה הירוקה (ב-rem) תגדל ותהיה רחבה
+    וגדולה יותר, בעוד התיבה האדומה (ב-px) תישאר קטנה והטקסט בתוכה עלול "להישבר" או לצאת החוצה.
+  </div>
+
+  <div class="demo-container">
+    <div style="display: flex; gap: 20px; justify-content: center; margin-top: 20px; flex-wrap: wrap;">
+      <!-- Fixed Layout -->
+      <div
+        style="background: #eee; padding: 20px; border-radius: 8px; width: 300px; text-align: center; border: 2px solid #ccc;">
+        <h4>עיצוב קבוע (Fixed)</h4>
+        <div
+          style="background: #e74c3c; color: white; padding: 10px; width: 250px; height: 100px; margin: 0 auto; font-size: 16px; display: flex; align-items: center; justify-content: center;">
+          אני תקוע ב-250px
+        </div>
+        <p style="font-size: 14px; color: #666; margin-top: 10px;">אם המשתמש יגדיל פונט, התיבה הזו תישאר קטנה והטקסט יצא
+          ממנה.</p>
+      </div>
+
+      <!-- Scalable Layout -->
+      <div
+        style="background: #eee; padding: 1.25rem; border-radius: 0.5rem; width: 18.75rem; text-align: center; border: 2px solid #2ecc71;">
+        <h4>עיצוב יחסי (Scalable)</h4>
+        <div
+          style="background: #2ecc71; color: white; padding: 0.625rem; width: 15.625rem; height: 6.25rem; margin: 0 auto; font-size: 1rem; display: flex; align-items: center; justify-content: center;">
+          אני גדל עם המשתמש (rem)
+        </div>
+        <p style="font-size: 0.875rem; color: #666; margin-top: 0.625rem;">התיבה הזו תגדל יחד עם הטקסט ותשמור על המראה
+          שלה.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>יחידות מידה יחסיות (em vs rem)</h2>
+  <p>במקום להשתמש בפיקסלים (<code>px</code>) שהם יחידה קבועה, מומלץ להשתמש ביחידות יחסיות שמאפשרות לאתר "לנשום" ולהתאים
+    את עצמו להגדרות המשתמש.</p>
+
+  <div class="unit-box">
+    <h3>1. rem (Root EM)</h3>
+    <p>יחידה היחסית ל<strong>אלמנט השורש</strong> (ה-<code>html</code>). ברוב הדפדפנים, ברירת המחדל היא
+      <code>1rem = 16px</code>.
+    </p>
+    <ul>
+      <li><strong>יתרון:</strong> עקביות. 1rem תמיד יהיה באותו גודל בכל מקום באתר.</li>
+      <li><strong>שימוש נפוץ:</strong> גדלי פונטים, ריווחים (padding/margin) ופריסה כללית.</li>
+    </ul>
+  </div>
+
+  <div class="unit-box">
+    <h3>2. em</h3>
+    <p>יחידה היחסית ל<strong>גודל הפונט של האלמנט הנוכחי</strong> (או של האבא שלו).</p>
+    <ul>
+      <li><strong>יתרון:</strong> גמישות מקומית. אם נגדיל את הפונט של כפתור, הריווחים ב-<code>em</code> יגדלו איתו
+        אוטומטית.</li>
+      <li><strong>שימוש נפוץ:</strong> רכיבים מבודדים (Components) שצריכים לשמור על פרופורציות פנימיות.</li>
+    </ul>
+  </div>
+
+  <h2>נקודות שבירה סטנדרטיות (Standard Breakpoints)</h2>
+  <p>למרות שהכי נכון לקבוע נקודות שבירה לפי התוכן שלכם, אלו הטווחים המקובלים ביותר בתעשייה (למשל ב-Bootstrap או
+    Tailwind):</p>
+  <ul>
+    <li><code>480px (30em)</code>: טלפונים גדולים.</li>
+    <li><code>768px (48em)</code>: טאבלטים (מצב לאורך).</li>
+    <li><code>1024px (64em)</code>: טאבלטים (מצב לרוחב) ומחשבים ניידים קטנים.</li>
+    <li><code>1280px (80em)</code>: מסכי מחשב סטנדרטיים.</li>
+  </ul>
+
+  <h2>דוגמה חיה: קופסה עם 3 מצבים</h2>
+  <p>שנו את רוחב הדפדפן כדי לראות את הקופסה משנה צבע וגודל ב-3 נקודות שבירה שונות:</p>
+
+  <div class="demo-container">
+    <div class="responsive-box"></div>
+  </div>
+
+  <pre>
+/* Mobile First: Default (Red) */
+.box { background: #e74c3c; }
+
+/* Tablet: 768px / 48em (Yellow) */
+@media screen and (min-width: 48em) {
+  .box { background: #f1c40f; }
+}
+
+/* Desktop: 1024px / 64em (Green) */
+@media screen and (min-width: 64em) {
+  .box { background: #2ecc71; }
+}
+    </pre>
+
+  <div class="note">
+    <strong>טיפ:</strong> שימוש ב-<code>em</code> בתוך מדיה קווריז (כמו <code>48em</code>) נחשב ל-Best Practice כי הוא
+    מכבד משתמשים שביצעו זום בדפדפן.
+  </div>
+
+  <a href="../index.html" class="btn-back">חזרה לתפריט הראשי</a>
+</body>
+
+</html>

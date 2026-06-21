@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="he">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MDN Style: אנימציות ב-CSS</title>
+    <style>
+      :root {
+        --mdn-blue: #3498db;
+        --mdn-red: #e74c3c;
+        --bg-gray: #f4f7f6;
+        --text-dark: #2c3e50;
+      }
+      body {
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        direction: rtl;
+        line-height: 1.6;
+        color: var(--text-dark);
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 40px;
+        background-color: var(--bg-gray);
+      }
+      h1 { border-bottom: 4px solid var(--mdn-blue); padding-bottom: 10px; }
+      h2 { color: var(--mdn-blue); margin-top: 40px; border-bottom: 1px solid #ccc; }
+      h3 { color: var(--mdn-red); margin-top: 25px; }
+      
+      /* Code Blocks */
+      code { background: #eee; padding: 2px 5px; border-radius: 4px; font-family: 'Consolas', monospace; direction: ltr; display: inline-block; }
+      pre { background: #2c3e50; color: #ecf0f1; padding: 20px; border-radius: 8px; overflow-x: auto; direction: ltr; text-align: left; }
+      
+      /* MDN Style Boxes */
+      .note { background: #e7f3fe; border-right: 6px solid var(--mdn-blue); padding: 15px; margin: 20px 0; border-radius: 4px; }
+      .warning { background: #fff3f3; border-right: 6px solid var(--mdn-red); padding: 15px; margin: 20px 0; border-radius: 4px; }
+
+      /* Demos */
+      .demo-container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin: 20px 0; text-align: center; }
+      .box { width: 80px; height: 80px; background: var(--mdn-blue); border-radius: 8px; margin: 20px auto; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+
+      /* Animation classes */
+      @keyframes slide { from { transform: translateX(100px); } to { transform: translateX(-100px); } }
+      .animate-slide { animation: slide 2s infinite alternate ease-in-out; }
+
+      .skeleton-card { width: 250px; background: #fff; border: 1px solid #ddd; padding: 15px; margin: 0 auto; }
+      .skeleton-img { width: 100%; height: 100px; background: #eee; position: relative; overflow: hidden; }
+      @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+      .shimmer::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent); animation: shimmer 1.5s infinite; }
+
+      .btn-back { display: inline-block; margin-top: 40px; padding: 10px 20px; background: var(--text-dark); color: white; text-decoration: none; border-radius: 5px; }
+    </style>
+  </head>
+  <body>
+    <h1>אנימציות ב-CSS (Using CSS Animations)</h1>
+    
+    <p>אנימציות ב-CSS מאפשרות להנפיש מעברים בין תצורות סגנון שונות. האנימציה מורכבת משני חלקים: <strong>תיאור האנימציה</strong> (Animation Configuration) וסט של <strong>נקודות מפתח</strong> (Keyframes) המציינות את תחילת וסיום מצבי הסגנון של האנימציה, וכן נקודות ציון אפשריות בדרך.</p>
+
+    <div class="note">
+        <strong>יתרונות:</strong> קלות לשימוש עבור אנימציות פשוטות, רצות היטב גם תחת עומס מערכת, ומאפשרות לדפדפן לשלוט ברצף האנימציה ולייעל את הביצועים.
+    </div>
+
+    <h2>קביעת תצורת האנימציה (The Animation Configuration)</h2>
+    <p>כדי ליצור רצף אנימציה, עלינו להשתמש בתכונות ה-<code>animation</code>. אלו מאפשרות לקבוע את התזמון, משך הזמן ופרטים נוספים.</p>
+    
+    <ul>
+        <li><code>animation-name</code>: השם של ה-Keyframes שיופעלו.</li>
+        <li><code>animation-duration</code>: משך הזמן של מחזור אנימציה אחד.</li>
+        <li><code>animation-timing-function</code>: עקומת התאוצה (למשל <code>ease</code>, <code>linear</code>).</li>
+        <li><code>animation-delay</code>: השהיה לפני תחילת האנימציה.</li>
+        <li><code>animation-iteration-count</code>: מספר הפעמים שהאנימציה תחזור על עצמה.</li>
+        <li><code>animation-direction</code>: האם האנימציה תתנגן קדימה, אחורה או לסירוגין.</li>
+    </ul>
+
+    <h3>דוגמה בסיסית:</h3>
+    <div class="demo-container">
+        <div class="box animate-slide">Slide</div>
+    </div>
+    <pre>
+.box {
+  animation-name: slide;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes slide {
+  from { transform: translateX(100px); }
+  to { transform: translateX(-100px); }
+}
+    </pre>
+
+    <h2>הגדרת רצף האנימציה באמצעות @keyframes</h2>
+    <p>הפקודה <code>@keyframes</code> מגדירה את המראה של האלמנט בנקודות זמן שונות במהלך האנימציה.</p>
+    <p>ניתן להשתמש במילות המפתח <code>from</code> ו-<code>to</code> (השקולות ל-0% ו-100%), או באחוזים מדויקים כדי להגדיר שלבים בדרך.</p>
+
+    <div class="warning">
+        <strong>ביצועים:</strong> מומלץ להנפיש רק תכונות שאינן גורמות ל-Reflow (חישוב מחדש של הפריסה), כמו <code>transform</code> ו-<code>opacity</code>.
+    </div>
+
+    <h2>דוגמה מהעולם האמיתי: Skeleton Screen</h2>
+    <p>טכניקה נפוצה להצגת טעינה המדמה את מבנה התוכן העתידי.</p>
+    <div class="demo-container">
+        <div class="skeleton-card">
+            <div class="skeleton-img shimmer"></div>
+            <div style="height:10px; background:#eee; margin-top:10px;" class="shimmer"></div>
+            <div style="height:10px; background:#eee; margin-top:5px; width:60%;" class="shimmer"></div>
+        </div>
+    </div>
+    <pre>
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmer 1.5s infinite;
+}
+    </pre>
+
+    <h2>נגישות (Accessibility)</h2>
+    <p>חלק מהמשתמשים עלולים לחוות אי-נוחות מאנימציות. עלינו לכבד את הגדרות המערכת שלהם:</p>
+    <pre>
+@media (prefers-reduced-motion: reduce) {
+  .animate-slide, .shimmer::after {
+    animation: none;
+  }
+}
+    </pre>
+
+    <a href="../index.html" class="btn-back">חזרה לתפריט הראשי</a>
+  </body>
+</html>

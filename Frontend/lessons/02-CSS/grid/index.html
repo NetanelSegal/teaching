@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="he">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>שיעור: CSS Grid</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <h1>שיעור גריד (CSS Grid)</h1>
+
+    <!-- חלק 1: מה זה Grid? -->
+    <h2>1. הגדרת הקונטיינר (display: grid)</h2>
+    <p>גריד מאפשר לנו ליצור פריסות דו-ממדיות (שורות ועמודות) בצורה קלה.</p>
+
+    <!-- חלק 2: חלוקה לעמודות (grid-template-columns) -->
+    <h2>2. חלוקה לעמודות (grid-template-columns)</h2>
+    <button onclick="changeGridColumns('1fr 1fr 1fr')">שלוש עמודות שוות (1fr 1fr 1fr)</button>
+    <button onclick="changeGridColumns('1fr 2fr 1fr')">עמודה אמצעית רחבה (1fr 2fr 1fr)</button>
+    <button onclick="changeGridColumns('repeat(4, 1fr)')">ארבע עמודות שוות (repeat(4, 1fr))</button>
+    <button onclick="changeGridColumns('200px 1fr')">עמודה קבועה וגמישה (200px 1fr)</button>
+
+    <!-- חלק 3: רווחים (gap) -->
+    <h2>3. רווחים (gap)</h2>
+    <button onclick="changeGridGap('0px')">בלי רווח (0px)</button>
+    <button onclick="changeGridGap('10px')">רווח קטן (10px)</button>
+    <button onclick="changeGridGap('25px')">רווח גדול (25px)</button>
+
+    <div class="container-controls">
+        <h3>הדגמה:</h3>
+        <div id="grid-container" class="grid-container">
+            <div class="item item-1">1</div>
+            <div class="item item-2">2</div>
+            <div class="item item-3">3</div>
+            <div class="item item-4">4</div>
+            <div class="item item-1">5</div>
+            <div class="item item-2">6</div>
+            <div class="item item-3">7</div>
+            <div class="item item-4">8</div>
+        </div>
+    </div>
+  </body>
+</html>

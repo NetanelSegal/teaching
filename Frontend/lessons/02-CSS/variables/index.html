@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="he">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MDN Style: משתני CSS</title>
+    <style>
+      :root {
+        --mdn-purple: #8e44ad;
+        --mdn-blue: #3498db;
+        --bg-gray: #f4f7f6;
+        --text-dark: #2c3e50;
+        
+        /* Demo Variables */
+        --primary-color: var(--mdn-purple);
+        --padding-base: 20px;
+      }
+      .dark-mode {
+        --primary-color: #f1c40f;
+        --text-dark: #ecf0f1;
+        --bg-gray: #2c3e50;
+      }
+      body {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        direction: rtl;
+        line-height: 1.6;
+        color: var(--text-dark);
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 40px;
+        background-color: var(--bg-gray);
+        transition: background-color 0.3s, color 0.3s;
+      }
+      h1 { border-bottom: 4px solid var(--mdn-purple); padding-bottom: 10px; }
+      h2 { color: var(--mdn-purple); margin-top: 40px; border-bottom: 1px solid #ccc; }
+      
+      code { background: #eee; padding: 2px 5px; border-radius: 4px; font-family: 'Consolas', monospace; direction: ltr; display: inline-block; }
+      pre { background: #2c3e50; color: #ecf0f1; padding: 20px; border-radius: 8px; overflow-x: auto; direction: ltr; text-align: left; }
+      
+      .note { background: #f4ecf7; border-right: 6px solid var(--mdn-purple); padding: 15px; margin: 20px 0; border-radius: 4px; }
+      
+      .demo-container { background: white; padding: var(--padding-base); border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin: 20px 0; border: 2px solid var(--primary-color); }
+      .dark-mode .demo-container { background: #34495e; }
+
+      .toggle-btn { padding: 10px 20px; background: var(--primary-color); color: #2c3e50; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+
+      .btn-back { display: inline-block; margin-top: 40px; padding: 10px 20px; background: var(--text-dark); color: white; text-decoration: none; border-radius: 5px; }
+    </style>
+  </head>
+  <body>
+    <h1>שימוש במאפיינים מותאמים אישית (Using CSS custom properties)</h1>
+    
+    <p><strong>מאפיינים מותאמים אישית</strong> (Custom Properties), הידועים גם בשם <strong>משתני CSS</strong>, הם ישויות המוגדרות על ידי כותבי ה-CSS המכילות ערכים ספציפיים לשימוש חוזר בכל המסמך.</p>
+
+    <div class="note">
+        <strong>למה להשתמש?</strong> משתני CSS מפחיתים חזרתיות, מקלים על תחזוקה ומאפשרים שינויים דינמיים בזמן אמת (למשל החלפת ערכות נושא).
+    </div>
+
+    <h2>מושגים בסיסיים (Basic Concepts)</h2>
+    <p>משתני CSS מוגדרים באמצעות קידומת של שני מקפים (<code>--</code>) וניגשים אליהם באמצעות פונקציית ה-<code>var()</code>.</p>
+    
+    <h3>הצהרה ושימוש</h3>
+    <pre>
+:root {
+  --main-bg-color: brown;
+}
+
+body {
+  background-color: var(--main-bg-color);
+}
+    </pre>
+
+    <h2>טווח והורשה (Scoping and Inheritance)</h2>
+    <p>משתני CSS כפופים לכללי המדרג (Cascade) וההורשה של CSS.</p>
+    <ul>
+        <li><strong>טווח גלובלי:</strong> הגדרת משתנים ב-<code>:root</code> הופכת אותם לזמינים בכל המסמך.</li>
+        <li><strong>טווח מקומי:</strong> הגדרה בתוך סלקטור ספציפי מגבילה את המשתנה לאלמנט וצאצאיו בלבד.</li>
+    </ul>
+
+    <h2>ערכי ברירת מחדל (Fallback Values)</h2>
+    <p>ניתן להגדיר ערך חלופי למקרה שהמשתנה אינו מוגדר:</p>
+    <pre>
+color: var(--my-var, red); /* יציג אדום אם --my-var לא קיים */
+    </pre>
+
+    <h2>דוגמה חיה: החלפת ערכת נושא (Theme Switching)</h2>
+    <p>מכיוון שמשתני CSS הם "חיים", ניתן לשנות אותם בקלות באמצעות הוספת קלאס או דרך JavaScript.</p>
+    
+    <div class="demo-container">
+      <h3>כרטיס אינטראקטיבי</h3>
+      <p>לחצו על הכפתור למטה כדי להחליף בין מצב יום למצב לילה.</p>
+      <button class="toggle-btn" onclick="document.body.classList.toggle('dark-mode')">החלף Theme</button>
+    </div>
+
+    <pre>
+:root { --bg: white; --text: black; }
+.dark-mode { --bg: #222; --text: #eee; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+    </pre>
+
+    <div class="note">
+        <strong>הערה:</strong> שמות המשתנים רגישים לאותיות גדולות/קטנות (Case-sensitive).
+    </div>
+
+    <a href="../index.html" class="btn-back">חזרה לתפריט הראשי</a>
+  </body>
+</html>
